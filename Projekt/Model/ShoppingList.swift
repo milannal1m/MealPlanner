@@ -35,7 +35,6 @@ class ShoppingList: Identifiable {
     //Singleton Class -> use with let shoppingList = ShoppingList.shoppingList
     static let shoppingList = ShoppingList()
     private init() {
-
         self.duration = validDurations.oneDay.timeInterval
     }
     

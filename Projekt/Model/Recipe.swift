@@ -19,16 +19,15 @@ class Recipe: Identifiable {
     //optional variables
     
     // let Photo
-    let photo: UIImage?
+    //let photo: UIImage?
     let cookingTime: Float? // in minutes
     let recipeDescription: String?
     
     init(name:String, photo:UIImage? = nil, cookingTime:Float? = nil, recipeDescription:String? = nil ) {
         self.name = name
-        self.photo = photo
+        //self.photo = photo
         self.cookingTime = cookingTime
         self.recipeDescription = recipeDescription
     }
 }
 
-//tewst

@@ -6,8 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
+    
+    let modelContainer: ModelContainer
+        
+        init() {
+            do {
+                modelContainer = try ModelContainer(for: Recipe.self)
+            } catch {
+                fatalError("Could not initialize ModelContainer")
+            }
+        }
     
     var body: some View {
         TabView(){
@@ -28,10 +39,12 @@ struct MainView: View {
                 }
                 .padding()
         }
+        .modelContainer(modelContainer)
     }
 }
 #Preview {
     MainView()
+        .modelContainer(previewContainer)
 }
 
 
