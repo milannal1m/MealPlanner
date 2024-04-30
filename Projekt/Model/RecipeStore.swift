@@ -19,11 +19,13 @@ class RecipeStore{
     static let recipeStore = RecipeStore()
     private init() {}
     
-    @MainActor
-    func createRecipe(name:String, cookingTime:Float? = nil, recipeDescription:String? = nil, into context: ModelContext){
+    @discardableResult func createRecipe(name:String, cookingTime:String? = nil, recipeDescription:String? = nil, into context: ModelContext) -> Recipe {
         logger.info("\(name) recipe created.")
         let recipe = Recipe(name: name,cookingTime: cookingTime, recipeDescription: recipeDescription)
         self.allRecipes.append(recipe)
         context.insert(recipe)
+        
+        return recipe
     }
+
 }

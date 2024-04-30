@@ -12,6 +12,7 @@ let previewContainer: ModelContainer = {
     do {
         let container = try ModelContainer (
             for: Recipe.self,
+            Ingredient.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
         return container

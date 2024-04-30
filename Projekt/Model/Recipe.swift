@@ -13,21 +13,28 @@ import UIKit
 class Recipe: Identifiable {
     
     //member Variables
+    @Attribute(.unique) let id = UUID()
     let name: String
-    var Inngredients = [Ingredient]()
+    @Relationship(inverse:\Ingredient.recipe) var ingredients: [Ingredient] = []
     
     //optional variables
     
     // let Photo
     //let photo: UIImage?
-    let cookingTime: Float? // in minutes
+    let cookingTime: String? // in minutes
     let recipeDescription: String?
     
-    init(name:String, photo:UIImage? = nil, cookingTime:Float? = nil, recipeDescription:String? = nil ) {
+    init(name:String, photo:UIImage? = nil, cookingTime:String? = nil, recipeDescription:String? = nil ) {
         self.name = name
         //self.photo = photo
         self.cookingTime = cookingTime
         self.recipeDescription = recipeDescription
+    }
+    
+    func addIngredient(name:String, amount:Float, unit:String, into context: ModelContext){
+        let ingredient = Ingredient(name: name,amount:amount,unit: unit)
+        self.ingredients.append(ingredient)
+        context.insert(ingredient)
     }
 }
 

@@ -14,7 +14,7 @@ struct MainView: View {
         
         init() {
             do {
-                modelContainer = try ModelContainer(for: Recipe.self)
+                modelContainer = try ModelContainer(for: Recipe.self, Ingredient.self)
             } catch {
                 fatalError("Could not initialize ModelContainer")
             }
@@ -47,4 +47,3 @@ struct MainView: View {
         .modelContainer(previewContainer)
 }
 
-//test2
