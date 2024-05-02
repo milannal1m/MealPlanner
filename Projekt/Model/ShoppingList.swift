@@ -25,10 +25,8 @@ enum validDurations {
     }
 }
 
-@Model
 class ShoppingList: Identifiable {
     
-    var allMeals = [Meal]()
     var mealsInDuration = [Meal]()
     var duration: TimeInterval
 
@@ -40,11 +38,14 @@ class ShoppingList: Identifiable {
     
     func changeDuration(duration:TimeInterval){
         self.duration = duration
-        self.filterMealsByDuration()
     }
     
-    func filterMealsByDuration(){
+    func filterMealsByDuration(into context: ModelContext) throws {
         mealsInDuration.removeAll()
+        
+        //fetches all Meals in ModelContext
+        let fetchDescriptor = FetchDescriptor<Meal>()
+        let allMeals = try context.fetch(fetchDescriptor)
         
         for meal in allMeals {
             if(IsMealInDuration(meal: meal)){
@@ -58,6 +59,7 @@ class ShoppingList: Identifiable {
         
         return self.duration >= timeDiffToMeal
     }
+    
     
     private func retrieveTimeDiffToMeal(meal: Meal) -> TimeInterval{
         let currentDate = Date()

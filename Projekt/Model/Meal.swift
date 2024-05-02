@@ -12,6 +12,7 @@ import SwiftData
 @Model
 class Meal: Identifiable {
     
+    @Attribute(.unique) let id = UUID()
     let recipe: Recipe
     let scheduledDate: Date
 
@@ -19,6 +20,5 @@ class Meal: Identifiable {
     init(recipe: Recipe, scheduledDate: Date) {
         self.recipe = recipe
         self.scheduledDate = scheduledDate
-        ShoppingList.shoppingList.allMeals.append(self)
     }
 }
