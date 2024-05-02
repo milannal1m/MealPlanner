@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10A3A1F2BE40CEA0080CB73 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = F10A3A1E2BE40CEA0080CB73 /* CalendarKit */; };
 		F11B9F992BDD061E005AA0D8 /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F982BDD061E005AA0D8 /* ShoppingView.swift */; };
 		F11B9F9B2BDD062D005AA0D8 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */; };
 		F11B9F9D2BDD0638005AA0D8 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */; };
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10A3A1F2BE40CEA0080CB73 /* CalendarKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +139,9 @@
 			dependencies = (
 			);
 			name = Projekt;
+			packageProductDependencies = (
+				F10A3A1E2BE40CEA0080CB73 /* CalendarKit */,
+			);
 			productName = Projekt;
 			productReference = F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +170,9 @@
 				Base,
 			);
 			mainGroup = F1DCCB962BD7CB8300ADA03F;
+			packageReferences = (
+				F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */,
+			);
 			productRefGroup = F1DCCBA02BD7CB8300ADA03F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -408,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richardtop/CalendarKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F10A3A1E2BE40CEA0080CB73 /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */;
+			productName = CalendarKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F1DCCB972BD7CB8300ADA03F /* Project object */;
 }

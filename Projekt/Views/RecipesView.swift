@@ -21,6 +21,7 @@ struct RecipesView: View {
     @State private var textFieldData: [String] = []
     @State var currentRecipe: Recipe? = nil
     
+    //@StateObject var textEditorReferenceType: TextEditorReferenceType = TextEditorReferenceType()
     
     var body: some View {
         NavigationStack{
@@ -30,17 +31,19 @@ struct RecipesView: View {
                 }
             }
             .toolbar{
-                ToolbarItem(placement: ToolbarItemPlacement.topBarLeading) {
+                ToolbarItem(placement: ToolbarItemPlacement.topBarTrailing) {
                     Button{
                         showCreateRecipe = true
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .foregroundColor(.black)
                 }
             }
             .alert("Enter new Recipe", isPresented: $showCreateRecipe){
-
+                
                 TextField("Name",text:$recipeName)
+                
                 TextField("Recipe Description",text:$recipeDescription)
                 TextField("Cooking Duration",text:$cookingDuration)
                 Button("Cancel"){}
@@ -59,10 +62,12 @@ struct RecipesView: View {
                 IngredientList(recipe: currentRecipe)
             }
         }
-        
     }
 }
+
+
 #Preview {
     RecipesView()
         .modelContainer(previewContainer)
 }
+
