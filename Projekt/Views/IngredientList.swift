@@ -15,12 +15,24 @@ struct IngredientList: View {
     @State var amountText = ""
     @State var unit = ""
     @State var showAdd = false
+    @State var showEdit = false
+    @State var tappedIngredientIdx = 0
     @Environment(\.modelContext) private var modelContext
+    
+    //Source: https://developer.apple.com/documentation/swiftdata/deleting-persistent-data-from-your-app
+    
+    func removeIngredients(at indexSet: IndexSet){
+        for index in indexSet {
+            let ingredientToDelete = recipe!.ingredients[index]
+            modelContext.delete(ingredientToDelete)
+        }
+    }
     
     var body: some View {
         NavigationStack {
             List{
-                ForEach(recipe!.ingredients) { ingredient in
+                let tagsArray = Array(zip(recipe!.ingredients.indices, recipe!.ingredients))
+                ForEach(tagsArray, id: \.0) { index, ingredient in
                     HStack {
                         Text(ingredient.name)
                             .font(.headline)
@@ -31,10 +43,16 @@ struct IngredientList: View {
                         
                             .font(.subheadline)
                     }
+                    .contentShape(Rectangle())
+                    .onTapGesture{
+                        tappedIngredientIdx = index
+                        name = ingredient.name
+                        amountText = String(ingredient.amount)
+                        unit = ingredient.unit
+                        showEdit = true
+                    }
                 }
-                .onDelete(perform: { indexSet in
-                    // Delete + Update noch machen
-                })
+                .onDelete(perform: removeIngredients)
                 
             }
             .toolbar{
@@ -64,6 +82,18 @@ struct IngredientList: View {
                     name = ""
                     amountText = ""
                     unit = ""
+                }
+            }
+            .alert("Edit tag", isPresented: $showEdit){
+                TextField("Name",text:$name)
+                TextField("Amount",text:$amountText)
+                    .keyboardType(.decimalPad)
+                TextField("Unit",text:$unit)
+                Button("Cancel"){}
+                Button("Ok"){
+                    recipe!.ingredients[tappedIngredientIdx].name = name
+                    recipe!.ingredients[tappedIngredientIdx].amount = Float(amountText) ?? 0.0
+                    recipe!.ingredients[tappedIngredientIdx].unit = unit
                 }
             }
         }

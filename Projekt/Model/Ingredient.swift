@@ -12,9 +12,9 @@ import SwiftData
 class Ingredient: Identifiable {
     
     @Attribute(.unique) let id = UUID()
-    let name: String
-    let amount: Float
-    let unit: String
+    var name: String
+    var amount: Float
+    var unit: String
     var recipe: Recipe? = nil
 
     init(name: String, amount: Float, unit: String) {
@@ -24,3 +24,32 @@ class Ingredient: Identifiable {
     }
 }
 
+// besprechen mit Maxi
+enum IngredientUnit: String, CaseIterable {
+    case grams
+    case kilograms
+    case ounces
+    case pounds
+    case liter
+    case milliLiter
+    case none
+    
+    var displayName: String {
+        switch self {
+        case .grams:
+            return "g"
+        case .kilograms:
+            return "kg"
+        case .ounces:
+            return "oz"
+        case .pounds:
+            return "lb"
+        case .none:
+            return ""
+        case .liter:
+            return "l"
+        case .milliLiter:
+            return "ml"
+        }
+    }
+}
