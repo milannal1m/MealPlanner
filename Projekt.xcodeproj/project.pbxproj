@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34C5CDBC2BE8E082007F7AC6 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */; };
 		F10A3A1F2BE40CEA0080CB73 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = F10A3A1E2BE40CEA0080CB73 /* CalendarKit */; };
 		F11B9F992BDD061E005AA0D8 /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F982BDD061E005AA0D8 /* ShoppingView.swift */; };
 		F11B9F9B2BDD062D005AA0D8 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		F11B9F982BDD061E005AA0D8 /* ShoppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
 		F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */,
 				F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */,
 				F1CBDD742BE016430093091D /* IngredientList.swift */,
+				34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				F1DCCBA52BD7CB8300ADA03F /* MainView.swift in Sources */,
 				F11B9FA22BDD08F6005AA0D8 /* Ingredient.swift in Sources */,
 				F11B9F9B2BDD062D005AA0D8 /* RecipesView.swift in Sources */,
+				34C5CDBC2BE8E082007F7AC6 /* RecipeView.swift in Sources */,
 				F11B9FA42BDD0900005AA0D8 /* Meal.swift in Sources */,
 				F11B9FA02BDD08E8005AA0D8 /* Recipe.swift in Sources */,
 				F1CBDD752BE016430093091D /* IngredientList.swift in Sources */,
