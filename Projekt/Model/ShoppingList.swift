@@ -27,9 +27,10 @@ enum validDurations {
 
 class ShoppingList: Identifiable {
     
-    var duration: TimeInterval
-    var mealsInDuration = [Meal]()
     var ingredientsToBuy = [Ingredient]()
+    private var duration: TimeInterval
+    private var mealsInDuration = [Meal]()
+
     
     //Singleton Class -> use with let shoppingList = ShoppingList.shoppingList
     static let shoppingList = ShoppingList()

@@ -12,8 +12,7 @@ import SwiftData
 @Observable
 class RecipeStore{
     
-    var allRecipes: [Recipe] = []
-    let logger = Logger(subsystem:Bundle.main.bundleIdentifier!, category: "RecipeStore")
+    private let logger = Logger(subsystem:Bundle.main.bundleIdentifier!, category: "RecipeStore")
     
     //Singleton Class -> use with let recipeStore = RecipeStore.recipeStore
     static let recipeStore = RecipeStore()
@@ -22,7 +21,6 @@ class RecipeStore{
     @discardableResult func createRecipe(name:String, cookingTime:String? = nil, recipeDescription:String? = nil, into context: ModelContext) -> Recipe {
         logger.info("\(name) recipe created.")
         let recipe = Recipe(name: name,cookingTime: cookingTime, recipeDescription: recipeDescription)
-        self.allRecipes.append(recipe)
         context.insert(recipe)
         
         return recipe

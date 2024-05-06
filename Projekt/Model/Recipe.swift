@@ -19,8 +19,9 @@ class Recipe: Identifiable {
     
     //optional variables
     
-    // let Photo
+    //let Photo
     //let photo: UIImage?
+    @Attribute(.externalStorage) var imageData: Data? = nil
     let cookingTime: String? // in minutes
     let recipeDescription: String?
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 struct RecipesView: View {
     @Environment(\.modelContext) private var modelContext
@@ -20,16 +21,71 @@ struct RecipesView: View {
     @State private var cookingDuration = ""
     @State private var textFieldData: [String] = []
     @State var currentRecipe: Recipe? = nil
+    @State var searchText = ""
+
     
     //@StateObject var textEditorReferenceType: TextEditorReferenceType = TextEditorReferenceType()
     
+    var searchedRecipes: [Recipe] {
+        if searchText.isEmpty {
+            return recipes
+        } else {
+            return recipes.filter { $0.name.contains(searchText) }
+        }
+    }
+    
+    func recipePreview(recipeDescription: String) -> String{
+        
+        let shownCharacters = 70
+        
+        if recipeDescription.utf16.count >= shownCharacters{
+            let result = recipeDescription.prefix(shownCharacters)
+            return result + " ..."
+        }else{
+            return recipeDescription
+        }
+    }
+    
+    
     var body: some View {
         NavigationStack{
-            VStack{
-                ForEach(recipes) { recipe in
-                    Text("\(recipe.name)")
+            List {
+                ForEach(searchedRecipes, id: \.self) { recipe in
+                    HStack {
+                        if let imageData = recipe.imageData,
+                           let uiImage = UIImage(data: imageData){
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 75,maxHeight: 75)
+                            
+                        }else{
+                            Image(systemName: "fork.knife")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 75,maxHeight: 75)
+                        }
+                        
+                        VStack {
+                            Text("\(recipe.name)")
+                                .bold()
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(5)
+                            Text(recipePreview(recipeDescription: recipe.recipeDescription ?? ""))
+                                .font(.system(size:13))
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        //open Recipe View
+                    }
                 }
             }
+            .searchable(text: $searchText)
             .toolbar{
                 ToolbarItem(placement: ToolbarItemPlacement.topBarTrailing) {
                     Button{
@@ -38,6 +94,11 @@ struct RecipesView: View {
                         Image(systemName: "plus")
                     }
                     .foregroundColor(.black)
+                }
+                ToolbarItem(placement: ToolbarItemPlacement.topBarLeading) {
+                    Text("Recipes")
+                        .bold()
+                        .font(.system(size:30))
                 }
             }
             .alert("Enter new Recipe", isPresented: $showCreateRecipe){
@@ -53,9 +114,6 @@ struct RecipesView: View {
                     recipeName = ""
                     cookingDuration = ""
                     recipeDescription = ""
-                    
-                    //Open IngredientList
-                    
                 }
             }
             .sheet(isPresented: $showAddIngredients){
