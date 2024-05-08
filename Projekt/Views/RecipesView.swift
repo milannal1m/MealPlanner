@@ -23,9 +23,7 @@ struct RecipesView: View {
     @State var currentRecipe: Recipe? = nil
     @State var searchText = ""
 
-    
-    //@StateObject var textEditorReferenceType: TextEditorReferenceType = TextEditorReferenceType()
-    
+
     var searchedRecipes: [Recipe] {
         if searchText.isEmpty {
             return recipes
