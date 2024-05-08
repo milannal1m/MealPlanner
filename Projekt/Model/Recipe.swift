@@ -23,7 +23,7 @@ class Recipe: Identifiable {
     //let photo: UIImage?
     @Attribute(.externalStorage) var imageData: Data? = nil
     let cookingTime: String? // in minutes
-    let recipeDescription: String?
+    var recipeDescription: String?
     
     init(name:String, photo:UIImage? = nil, cookingTime:String? = nil, recipeDescription:String? = nil ) {
         self.name = name
