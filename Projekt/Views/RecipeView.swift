@@ -10,13 +10,13 @@ import SwiftData
 
 private var startColor = Color(red: 0.94, green: 0.94, blue: 0.86)
 private var endColor = Color(red: 217/255, green: 193/255, blue: 165/255)
-private var textFieldDescription: UITextField!
 
 struct RecipeView: View {
     
     @State var recipe: Recipe
     @State var textDescription = ""
     @State var textButton = "Edit"
+    @State var toggleDescription = true
     
     var body: some View {
             NavigationStack {
@@ -38,7 +38,13 @@ struct RecipeView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 100,maxHeight: 100)
+                                .padding(.top, 30)
                         }
+                        TextField("Rezept Beschreibung eingeben", text: $textDescription)
+                            .foregroundStyle(.black)
+                            .font(.system(size: 18))
+                            .disabled(toggleDescription)
+                            .padding(.horizontal, 60)
                         Spacer()
                     }
                     .onTapGesture {
@@ -50,12 +56,13 @@ struct RecipeView: View {
                         Button{
                             if(textButton == "Edit") {
                                 textButton = "Done"
-                                
+                                toggleDescription = false
                             }
                             else {
                                 textButton = "Edit"
                                 
                                 recipe.recipeDescription = textDescription
+                                toggleDescription = true
                             }
                         } label: {
                             Text(textButton)
