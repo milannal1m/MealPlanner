@@ -23,33 +23,3 @@ class Ingredient: Identifiable {
         self.unit = unit
     }
 }
-
-// besprechen mit Maxi
-enum IngredientUnit: String, CaseIterable {
-    case grams
-    case kilograms
-    case ounces
-    case pounds
-    case liter
-    case milliLiter
-    case none
-    
-    var displayName: String {
-        switch self {
-        case .grams:
-            return "g"
-        case .kilograms:
-            return "kg"
-        case .ounces:
-            return "oz"
-        case .pounds:
-            return "lb"
-        case .none:
-            return ""
-        case .liter:
-            return "l"
-        case .milliLiter:
-            return "ml"
-        }
-    }
-}

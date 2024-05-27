@@ -15,7 +15,7 @@ class Recipe: Identifiable {
     //member Variables
     @Attribute(.unique) let id = UUID()
     let name: String
-    @Relationship(inverse:\Ingredient.recipe) var ingredients: [Ingredient] = []
+    @Relationship(deleteRule: .cascade, inverse:\Ingredient.recipe) var ingredients: [Ingredient] = []
     
     //optional variables
     

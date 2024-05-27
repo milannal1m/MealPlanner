@@ -14,7 +14,7 @@ struct MainView: View {
         
         init() {
             do {
-                modelContainer = try ModelContainer(for: Recipe.self, Ingredient.self)
+                modelContainer = try ModelContainer(for: Recipe.self, Ingredient.self, Meal.self)
             } catch {
                 fatalError("Could not initialize ModelContainer")
             }
@@ -32,14 +32,16 @@ struct MainView: View {
                     Image(systemName: "calendar")
                     Text("Kalender")
                 }
-            RecipesView()
+            ShoppingListView()
                 .tabItem{
                     Image(systemName: "cart")
                     Text("Einkaufsliste")
                 }
+                
                 .padding()
         }
         .modelContainer(modelContainer)
+        
     }
 }
 #Preview {

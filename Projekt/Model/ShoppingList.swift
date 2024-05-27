@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-enum validDurations {
+enum ValidDuration {
     case oneDay
     case twoDays
     case threeDays
@@ -23,28 +23,39 @@ enum validDurations {
             return 3 * 24 * 60 * 60 // 3 days in seconds
         }
     }
+    
+    var durationString: String{
+        switch self {
+        case .oneDay:
+            return "1 Day"
+        case .twoDays:
+            return "2 Days"
+        case .threeDays:
+            return "3 Days"
+        }
+    }
 }
 
-class ShoppingList: Identifiable {
+class ShoppingList: Identifiable, ObservableObject {
     
-    var ingredientsToBuy = [Ingredient]()
-    private var duration: TimeInterval
+    @Published var shoppingListEntries = [ShoppingListEntry]()
+    private var duration: ValidDuration
     private var mealsInDuration = [Meal]()
 
     
     //Singleton Class -> use with let shoppingList = ShoppingList.shoppingList
     static let shoppingList = ShoppingList()
     private init() {
-        self.duration = validDurations.oneDay.timeInterval
+        self.duration = ValidDuration.oneDay
     }
     
-    func updateShoppingList(duration:TimeInterval, into context: ModelContext) throws {
+    func updateShoppingList(duration:ValidDuration, into context: ModelContext) throws {
         self.changeDuration(duration: duration)
         try self.filterMealsByDuration(into: context)
         self.updateIngredientsToBuy()
     }
     
-    private func changeDuration(duration:TimeInterval){
+    private func changeDuration(duration:ValidDuration){
         self.duration = duration
     }
     
@@ -66,7 +77,7 @@ class ShoppingList: Identifiable {
     private func IsMealInDuration(meal:Meal) -> Bool{
         let timeDiffToMeal = self.retrieveTimeDiffToMeal(meal: meal)
         
-        return self.duration >= timeDiffToMeal
+        return self.duration.timeInterval >= timeDiffToMeal
     }
     
     
@@ -78,7 +89,7 @@ class ShoppingList: Identifiable {
     
     private func updateIngredientsToBuy(){
         let allIngredients = self.allIngredientsOfMealsInDuration()
-        ingredientsToBuy = self.mergedIdenticalIngredients(allIngredients: allIngredients)
+        shoppingListEntries = self.mergedShoppingListEntries(allIngredients: allIngredients)
     }
     
     private func allIngredientsOfMealsInDuration() -> [Ingredient]{
@@ -93,7 +104,7 @@ class ShoppingList: Identifiable {
     }
     
     
-    private func mergedIdenticalIngredients(allIngredients:[Ingredient]) -> [Ingredient]{
+    private func mergedShoppingListEntries(allIngredients:[Ingredient]) -> [ShoppingListEntry]{
         
         //Sources:
         //https://stackoverflow.com/questions/73899414/group-array-by-more-than-one-property-swift
@@ -106,7 +117,7 @@ class ShoppingList: Identifiable {
         
         let identicalIngredients = Dictionary(grouping: allIngredients, by: {IdenticalIngredientKey(name: $0.name.lowercased(), unit: $0.unit.lowercased())})
         
-        var mergedIngredients = [Ingredient]()
+        var shoppingListEntries = [ShoppingListEntry]()
         
         identicalIngredients.forEach { (identicalIngredientKey: IdenticalIngredientKey, identicalIngredients: [Ingredient]) in
             var mergedAmount = Float(0)
@@ -116,11 +127,13 @@ class ShoppingList: Identifiable {
             
             let mergedIngredient = Ingredient(name: identicalIngredientKey.name.capitalized(with: nil), amount: mergedAmount, unit: identicalIngredientKey.unit)
             
-            mergedIngredients.append(mergedIngredient)
+            let shoppingListEntry = ShoppingListEntry(ingredient: mergedIngredient)
+            
+            shoppingListEntries.append(shoppingListEntry)
             mergedAmount = 0
         }
         
-        return mergedIngredients
+        return shoppingListEntries
     }
     
 }
