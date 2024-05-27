@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import _PhotosUI_SwiftUI
 
 private var startColor = Color(red: 0.94, green: 0.94, blue: 0.86)
 private var endColor = Color(red: 217/255, green: 193/255, blue: 165/255)
@@ -16,7 +17,8 @@ struct RecipeView: View {
     @State var recipe: Recipe
     @State var textDescription = ""
     @State var textButton = "Edit"
-    @State var toggleDescription = true
+    @State var toggleEdit = true
+    @State private var selectedPhoto: PhotosPickerItem?
     
     var body: some View {
             NavigationStack {
@@ -31,24 +33,56 @@ struct RecipeView: View {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxWidth: 100,maxHeight: 100)
+                                .shadow(radius: 15)
+                                .frame(maxWidth: 300,maxHeight: 300)
+                                .padding(.top, 20)
                             
                         }else{
                             Image(systemName: "fork.knife")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxWidth: 100,maxHeight: 100)
+                                .shadow(radius: 8)
+                                .frame(maxWidth: 200,maxHeight: 200)
                                 .padding(.top, 30)
                         }
-                        TextField("Rezept Beschreibung eingeben", text: $textDescription)
+                        
+                        PhotosPicker("Select photo of meal", selection: $selectedPhoto, matching: .images)
+                            .padding(.bottom, 20)
+                        
+                        Text("Recipe")
+                            .font(.title2)
+                            .bold()
+                            .underline()
+                            .padding()
+                            .background(Rectangle().fill(Color.white).shadow(radius: 5, x: 0, y: 2))
+                        TextField("Please enter recipe description", text: $textDescription, axis: .vertical)
                             .foregroundStyle(.black)
+                            .background(Color.white)
                             .font(.system(size: 18))
-                            .disabled(toggleDescription)
-                            .padding(.horizontal, 60)
+                            .disabled(toggleEdit)
+                            .border(Color.black)
+                            .padding(.top, 20)
+                            .padding(.bottom, 15)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(10)
+                            .frame(width: 300)
+                            .lineLimit(3, reservesSpace: true)
+                        Text("Ingredients")
+                            .font(.title2)
+                            .bold()
+                            .underline()
+                            .padding()
+                            .background(Rectangle().fill(Color.white).shadow(radius: 5, x: 0, y: 2))
+                        IngredientList(recipe: recipe)
                         Spacer()
                     }
                     .onTapGesture {
                         textDescription = recipe.recipeDescription!
+                    }
+                    .task(id: selectedPhoto){
+                        if let data = try? await selectedPhoto?.loadTransferable(type: Data.self){
+                            recipe.imageData = data
+                        }
                     }
                 }
                 .toolbar {
@@ -56,13 +90,13 @@ struct RecipeView: View {
                         Button{
                             if(textButton == "Edit") {
                                 textButton = "Done"
-                                toggleDescription = false
+                                toggleEdit = false
                             }
                             else {
                                 textButton = "Edit"
                                 
                                 recipe.recipeDescription = textDescription
-                                toggleDescription = true
+                                toggleEdit = true
                             }
                         } label: {
                             Text(textButton)
@@ -94,6 +128,7 @@ struct RecipeView: View {
     recipe.addIngredient(name: "Noodles", amount: 500.0, unit: "gramm", into: container.mainContext)
     recipe.addIngredient(name: "Cheese", amount: 50.0, unit: "gramm", into: container.mainContext)
     recipe.addIngredient(name: "Bread", amount: 50.0, unit: "gramm", into: container.mainContext)
+    recipe.addIngredient(name: "Bread1", amount: 50.0, unit: "gramm", into: container.mainContext)
 
     return RecipeView(recipe: recipe)
         .modelContainer(container)
