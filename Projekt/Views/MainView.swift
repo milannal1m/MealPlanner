@@ -27,16 +27,16 @@ struct MainView: View {
                     Image(systemName: "fork.knife")
                     Text("Rezepte")
                 }
-            CalenderView()
+                CalenderView()
                 .tabItem {
-                    Image(systemName: "calendar")
+                    Image(systemName: "Calendar")
                     Text("Kalender")
                 }
-            ShoppingListView()
-                .tabItem{
-                    Image(systemName: "cart")
-                    Text("Einkaufsliste")
-                }
+//            ShoppingListView()
+//                .tabItem{
+//                    Image(systemName: "cart")
+//                    Text("Einkaufsliste")
+//                }
                 
                 .padding()
         }

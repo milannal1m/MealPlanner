@@ -6,12 +6,43 @@
 //
 
 import SwiftUI
+import UIKit
+import FSCalendar
+import EventKit
+
+
 
 struct CalenderView: View {
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CalendarViewRepresentable()
     }
 }
+
+struct CalendarViewRepresentable: UIViewRepresentable {
+    typealias UIViewType = FSCalendar
+    
+    func makeUIView(context: Context) -> FSCalendar {
+        return FSCalendar()
+    }
+    
+    func updateUIView(_ uiView: FSCalendar, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+    
+    class Coordinator: NSObject,
+        FSCalendarDelegate, FSCalendarDataSource {
+        var parent: CalendarViewRepresentable
+        
+        init(parent: CalendarViewRepresentable) {
+            self.parent = parent
+        }
+    }
+}
+
+
 
 #Preview {
     CalenderView()
