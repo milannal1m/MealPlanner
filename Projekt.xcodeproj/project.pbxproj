@@ -25,6 +25,7 @@
 		F1DCCBA52BD7CB8300ADA03F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCCBA42BD7CB8300ADA03F /* MainView.swift */; };
 		F1DCCBA72BD7CB8400ADA03F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DCCBA62BD7CB8400ADA03F /* Assets.xcassets */; };
 		F1DCCBAA2BD7CB8400ADA03F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1DCCBA92BD7CB8400ADA03F /* Preview Assets.xcassets */; };
+		F1EE50652C0B4ADE00D5B498 /* RecipePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EE50642C0B4ADE00D5B498 /* RecipePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		F1DCCBA42BD7CB8300ADA03F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F1DCCBA62BD7CB8400ADA03F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1DCCBA92BD7CB8400ADA03F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F1EE50642C0B4ADE00D5B498 /* RecipePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				F1CBDD742BE016430093091D /* IngredientList.swift */,
 				34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */,
 				F176AFB72BE8E5CB00E033DC /* TestRecipeView.swift */,
+				F1EE50642C0B4ADE00D5B498 /* RecipePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1CBDD732BE004B00093091D /* previewContainer.swift in Sources */,
+				F1EE50652C0B4ADE00D5B498 /* RecipePickerView.swift in Sources */,
 				F17B83122BEAA11200546E65 /* ShoppingListEntry.swift in Sources */,
 				F176AFB82BE8E5CB00E033DC /* TestRecipeView.swift in Sources */,
 				F11B9FA62BDD092D005AA0D8 /* ShoppingList.swift in Sources */,
