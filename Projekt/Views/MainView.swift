@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct MainView: View {
-    
     let modelContainer: ModelContainer
         
         init() {
@@ -27,9 +26,9 @@ struct MainView: View {
                     Image(systemName: "fork.knife")
                     Text("Rezepte")
                 }
-                CalenderView()
+            CalenderView()
                 .tabItem {
-                    Image(systemName: "Calendar")
+                    Image(systemName: "calendar")
                     Text("Kalender")
                 }
 //            ShoppingListView()

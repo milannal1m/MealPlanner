@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		341BCAE32C0517E0000BDC57 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341BCAE22C0517E0000BDC57 /* Calendar.swift */; };
-		341BCAE62C08DF44000BDC57 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 341BCAE52C08DF44000BDC57 /* FSCalendar */; };
 		34C5CDBC2BE8E082007F7AC6 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */; };
-		F10A3A1F2BE40CEA0080CB73 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = F10A3A1E2BE40CEA0080CB73 /* CalendarKit */; };
+		34F497772C0A98FD00997847 /* DateCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F497762C0A98FD00997847 /* DateCalendar.swift */; };
 		F11B9F9B2BDD062D005AA0D8 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */; };
 		F11B9F9D2BDD0638005AA0D8 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */; };
 		F11B9FA02BDD08E8005AA0D8 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9F9F2BDD08E8005AA0D8 /* Recipe.swift */; };
@@ -30,8 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		341BCAE22C0517E0000BDC57 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		34F497762C0A98FD00997847 /* DateCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalendar.swift; sourceTree = "<group>"; };
 		F11B9F9A2BDD062D005AA0D8 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		F11B9F9F2BDD08E8005AA0D8 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -56,8 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F10A3A1F2BE40CEA0080CB73 /* CalendarKit in Frameworks */,
-				341BCAE62C08DF44000BDC57 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +83,7 @@
 				F11B9FA52BDD092D005AA0D8 /* ShoppingList.swift */,
 				F1CBDD6F2BDFF43C0093091D /* RecipeStore.swift */,
 				F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */,
-				341BCAE22C0517E0000BDC57 /* Calendar.swift */,
+				34F497762C0A98FD00997847 /* DateCalendar.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,8 +150,6 @@
 			);
 			name = Projekt;
 			packageProductDependencies = (
-				F10A3A1E2BE40CEA0080CB73 /* CalendarKit */,
-				341BCAE52C08DF44000BDC57 /* FSCalendar */,
 			);
 			productName = Projekt;
 			productReference = F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */;
@@ -186,8 +180,6 @@
 			);
 			mainGroup = F1DCCB962BD7CB8300ADA03F;
 			packageReferences = (
-				F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */,
-				341BCAE42C08DF44000BDC57 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = F1DCCBA02BD7CB8300ADA03F /* Products */;
 			projectDirPath = "";
@@ -220,9 +212,9 @@
 				F176AFB82BE8E5CB00E033DC /* TestRecipeView.swift in Sources */,
 				F11B9FA62BDD092D005AA0D8 /* ShoppingList.swift in Sources */,
 				F1DCCBA52BD7CB8300ADA03F /* MainView.swift in Sources */,
+				34F497772C0A98FD00997847 /* DateCalendar.swift in Sources */,
 				F11B9FA22BDD08F6005AA0D8 /* Ingredient.swift in Sources */,
 				F169F0D62BEB6941004FF790 /* ShoppingListRow.swift in Sources */,
-				341BCAE32C0517E0000BDC57 /* Calendar.swift in Sources */,
 				F11B9F9B2BDD062D005AA0D8 /* RecipesView.swift in Sources */,
 				34C5CDBC2BE8E082007F7AC6 /* RecipeView.swift in Sources */,
 				F11B9FA42BDD0900005AA0D8 /* Meal.swift in Sources */,
@@ -438,38 +430,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		341BCAE42C08DF44000BDC57 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.4;
-			};
-		};
-		F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/richardtop/CalendarKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.10;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		341BCAE52C08DF44000BDC57 /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 341BCAE42C08DF44000BDC57 /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
-		};
-		F10A3A1E2BE40CEA0080CB73 /* CalendarKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F10A3A1D2BE40CEA0080CB73 /* XCRemoteSwiftPackageReference "CalendarKit" */;
-			productName = CalendarKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F1DCCB972BD7CB8300ADA03F /* Project object */;
 }

@@ -6,14 +6,10 @@
 //
 
 import UIKit
-import CalendarKit
-import EventKit
+import SwiftUI
 
-class Calendar: DayViewController {
-    private let eventStore = EKEventStore()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
+class Calendar{
 
 }
+
