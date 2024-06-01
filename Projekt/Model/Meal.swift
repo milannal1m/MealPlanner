@@ -21,4 +21,9 @@ class Meal: Identifiable {
         self.recipe = recipe
         self.scheduledDate = scheduledDate
     }
+    
+    struct mealMetaData: Identifiable {
+        var id = UUID().uuidString
+        var meal: [Meal]
+    }
 }

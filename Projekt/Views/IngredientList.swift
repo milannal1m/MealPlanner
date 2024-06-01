@@ -29,46 +29,45 @@ struct IngredientList: View {
     }
     
     var body: some View {
-        NavigationStack {
-            List{
-                let tagsArray = Array(zip(recipe!.ingredients.indices, recipe!.ingredients))
-                ForEach(tagsArray, id: \.0) { index, ingredient in
-                    HStack {
-                        Text(ingredient.name)
-                            .font(.headline)
-                        
+                VStack {
+                    HStack(alignment: .center, spacing: 10) {
+                        Text("Ingredients")
+                            .font(.title2.bold())
+                            .padding()
                         
                         Spacer()
-                        Text("\(String(format: "%g", ingredient.amount)) \(ingredient.unit)")
                         
-                            .font(.subheadline)
+                        Button {
+                            showAdd = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                        }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture{
-                        tappedIngredientIdx = index
-                        name = ingredient.name
-                        amountText = String(ingredient.amount)
-                        unit = ingredient.unit
-                        showEdit = true
-                    }
-                }
-                .onDelete(perform: removeIngredients)
-                
-            }
-            .toolbar{
-                ToolbarItem(placement: ToolbarItemPlacement.topBarTrailing) {
-                    Button{
-                        showAdd = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.black)
-                    }
-                }
-                ToolbarItem(placement: ToolbarItemPlacement.topBarLeading){
-                    Text("Ingredients")
-                        .fontWeight(.bold)
-                        .font(.title)
-                }
+                    .padding(.horizontal)
+                    List{
+                        let tagsArray = Array(zip(recipe!.ingredients.indices, recipe!.ingredients))
+                        ForEach(tagsArray, id: \.0) { index, ingredient in
+                            HStack {
+                                Text(ingredient.name)
+                                    .font(.headline)
+                                
+                                
+                                Spacer()
+                                Text("\(String(format: "%g", ingredient.amount)) \(ingredient.unit)")
+                                
+                                    .font(.subheadline)
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture{
+                                tappedIngredientIdx = index
+                                name = ingredient.name
+                                amountText = String(ingredient.amount)
+                                unit = ingredient.unit
+                                showEdit = true
+                            }
+                        }
+                        .onDelete(perform: removeIngredients)
             }
             .alert("Add Ingredient", isPresented: $showAdd){
 

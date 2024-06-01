@@ -14,6 +14,8 @@ struct CalenderView: View {
     @Query var recipes: [Recipe]
     @Query var meals: [Meal]
     @Environment(\.modelContext) private var modelContext
+    @State var showRecipePicker: Bool = false
+    @State var mealsOnDate: [Meal] = []
     var body: some View {
         VStack{
             
@@ -33,7 +35,7 @@ struct CalenderView: View {
                 Spacer()
                 
                 Button {
-                    
+                    showRecipePicker = true
                 } label: {
                     Image(systemName: "plus")
                         .font(.title2)
@@ -53,6 +55,9 @@ struct CalenderView: View {
                 }
             }
             .padding(.horizontal)
+            .sheet(isPresented: $showRecipePicker){
+                RecipePickerView(pickedDate: currentDate)
+            }
             
             HStack(spacing: 10) {
                 ForEach(weekDays, id: \.self){day in
@@ -69,15 +74,40 @@ struct CalenderView: View {
                     CView(value: value)
                         .background(
                         Capsule()
-                            .fill(Color("Blue"))
+                            .fill(.blue)
                             .padding(.horizontal, 8)
                             .opacity(sameDay(date1: value.date, date2: currentDate) ? 1 : 0)
                     )
                         .onTapGesture {
                             currentDate = value.date
+                            mealsOnDate = meals.filter{ meal in
+                                sameDay(date1: meal.scheduledDate, date2: currentDate)
+                            }
                         }
                 }
             }
+            
+            VStack(spacing: 15){
+                Text("Meals")
+                    .font(.headline.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                if let meal = meals.first(where: { meal in
+                    return sameDay(date1: meal.scheduledDate, date2: currentDate)
+                }){
+                    ForEach(mealsOnDate, id:\.self) { meal in
+                        VStack(alignment: .leading, spacing: 10) {
+                            
+                            Text("\(meal.recipe.name)")
+                        }
+                    }
+                }
+                else {
+                    
+                    Text("No meal found")
+                }
+            }
+            .padding()
         }
         .onChange(of: currentMonth) {
             oldValue, newValue in
@@ -91,20 +121,31 @@ struct CalenderView: View {
     func CView(value: DateCalendar.DateValue) -> some View {
         VStack {
             if value.day != -1 {
-                Text("\(value.day)")
                 
-                Circle()
-                    .fill(Color("Blue"))
-                    .frame(width: 8, height: 8)
-            }
-            else {
-                Text("\(value.day)")
-                    .font(.title3.bold())
-                    .foregroundStyle(sameDay(date1: value.date, date2: currentDate) ? .white : .primary)
-                    .frame(maxWidth: .infinity)
+                if let meal = meals.first(where: { meal in
+                    return sameDay(date1: meal.scheduledDate, date2: value.date)
+                }){
+                    
+                    Text("\(value.day)")
+                        .font(.headline)
+                        .foregroundStyle(sameDay(date1: meal.scheduledDate, date2: currentDate) ? .white : .primary)
+                        .frame(maxWidth: .infinity)
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .fill(sameDay(date1: meal.scheduledDate, date2: currentDate) ? .white : .blue)
+                        .frame(width: 8, height: 8)
+                }
+                else {
+                    Text("\(value.day)")
+                        .font(.headline)
+                        .foregroundStyle(sameDay(date1: value.date, date2: currentDate) ? .white : .primary)
+                        .frame(maxWidth: .infinity)
+                }
             }
         }
-        .padding(.vertical, 8)
+        .padding(.vertical, 9)
         .frame(height: 60, alignment: .top)
     }
     

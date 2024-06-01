@@ -10,6 +10,7 @@ import SwiftData
 
 struct RecipePickerView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @State var recipeStore = RecipeStore.recipeStore
     @Query var recipes: [Recipe]
     @State var searchText = ""
@@ -57,6 +58,8 @@ struct RecipePickerView: View {
                         .onTapGesture {
                             let meal = Meal(recipe: recipe, scheduledDate: pickedDate)
                             modelContext.insert(meal)
+                            print(meal.scheduledDate)
+                            dismiss()
                         }
 
                     }

@@ -23,17 +23,12 @@ struct RecipeView: View {
     var body: some View {
             NavigationStack {
                 ZStack {
-                    RadialGradient(gradient: Gradient(colors: [startColor, endColor]), center: .center, startRadius: 250, endRadius: 650)
-                        .ignoresSafeArea()
-                        .edgesIgnoringSafeArea(.all)
-                    // https://ashishkakkad.medium.com/gradient-in-swiftui-6c4fc408b7e8
                     VStack{
                         if let imageData = recipe.imageData,
                            let uiImage = UIImage(data: imageData){
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                                .shadow(radius: 15)
                                 .frame(maxWidth: 300,maxHeight: 300)
                                 .padding(.top, 20)
                             
@@ -41,7 +36,6 @@ struct RecipeView: View {
                             Image(systemName: "fork.knife")
                                 .resizable()
                                 .scaledToFit()
-                                .shadow(radius: 8)
                                 .frame(maxWidth: 200,maxHeight: 200)
                                 .padding(.top, 30)
                         }
@@ -52,14 +46,14 @@ struct RecipeView: View {
                         Text("Recipe")
                             .font(.title2)
                             .bold()
-                            .underline()
-                            .padding()
-                            .background(Rectangle().fill(Color.white).shadow(radius: 5, x: 0, y: 2))
+
                         TextField("Please enter recipe description", text: $textDescription, axis: .vertical)
+                            .onAppear(perform: {
+                                textDescription = recipe.recipeDescription!
+                            })
                             .foregroundStyle(.black)
                             .background(Color.white)
                             .font(.system(size: 18))
-                            .disabled(toggleEdit)
                             .border(Color.black)
                             .padding(.top, 20)
                             .padding(.bottom, 15)
@@ -67,17 +61,10 @@ struct RecipeView: View {
                             .lineLimit(10)
                             .frame(width: 300)
                             .lineLimit(3, reservesSpace: true)
-                        Text("Ingredients")
-                            .font(.title2)
-                            .bold()
-                            .underline()
-                            .padding()
-                            .background(Rectangle().fill(Color.white).shadow(radius: 5, x: 0, y: 2))
-                        IngredientList(recipe: recipe)
-                        Spacer()
-                    }
-                    .onTapGesture {
-                        textDescription = recipe.recipeDescription!
+                            .onTapGesture {
+                                recipe.recipeDescription = textDescription
+                            }
+                            IngredientList(recipe: recipe)
                     }
                     .task(id: selectedPhoto){
                         if let data = try? await selectedPhoto?.loadTransferable(type: Data.self){
@@ -86,24 +73,6 @@ struct RecipeView: View {
                     }
                 }
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing){
-                        Button{
-                            if(textButton == "Edit") {
-                                textButton = "Done"
-                                toggleEdit = false
-                            }
-                            else {
-                                textButton = "Edit"
-                                
-                                recipe.recipeDescription = textDescription
-                                toggleEdit = true
-                            }
-                        } label: {
-                            Text(textButton)
-                                .foregroundStyle(.black)
-                                .bold()
-                        }
-                    }
                     ToolbarItem(placement: .topBarLeading){
                         Text(recipe.name)
                             .bold()
@@ -128,7 +97,6 @@ struct RecipeView: View {
     recipe.addIngredient(name: "Noodles", amount: 500.0, unit: "gramm", into: container.mainContext)
     recipe.addIngredient(name: "Cheese", amount: 50.0, unit: "gramm", into: container.mainContext)
     recipe.addIngredient(name: "Bread", amount: 50.0, unit: "gramm", into: container.mainContext)
-    recipe.addIngredient(name: "Bread1", amount: 50.0, unit: "gramm", into: container.mainContext)
 
     return RecipeView(recipe: recipe)
         .modelContainer(container)
