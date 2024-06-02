@@ -15,7 +15,7 @@ struct RecipesView: View {
     @Query var recipes: [Recipe]
     @State private var ingredients = [Ingredient]()
     @State private var showCreateRecipe = false
-    @State private var showAddIngredients = false
+    @State private var showRecipeView = false
     @State private var recipeName = ""
     @State private var recipeDescription = ""
     @State private var cookingDuration = ""
@@ -79,7 +79,7 @@ struct RecipesView: View {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        //open Recipe View
+                        showRecipeView = true
                     }
                 }
             }
@@ -108,14 +108,14 @@ struct RecipesView: View {
                 Button("Cancel"){}
                 Button("Ok"){
                     currentRecipe = recipeStore.createRecipe(name:recipeName, cookingTime: cookingDuration, recipeDescription: recipeDescription, into: modelContext)
-                    showAddIngredients = true
+                    showRecipeView = true
                     recipeName = ""
                     cookingDuration = ""
                     recipeDescription = ""
                 }
             }
-            .sheet(isPresented: $showAddIngredients){
-                IngredientList(recipe: currentRecipe)
+            .sheet(isPresented: $showRecipeView){
+                RecipeView(recipe: currentRecipe)
             }
         }
     }

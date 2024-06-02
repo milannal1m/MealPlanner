@@ -31,11 +31,11 @@ struct MainView: View {
                     Image(systemName: "calendar")
                     Text("Kalender")
                 }
-//            ShoppingListView()
-//                .tabItem{
-//                    Image(systemName: "cart")
-//                    Text("Einkaufsliste")
-//                }
+            ShoppingListView()
+                .tabItem{
+                    Image(systemName: "cart")
+                    Text("Einkaufsliste")
+                }
                 
                 .padding()
         }

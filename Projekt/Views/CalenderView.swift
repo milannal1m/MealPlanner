@@ -92,9 +92,9 @@ struct CalenderView: View {
                     .font(.headline.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                if let meal = meals.first(where: { meal in
+                if meals.first(where: { meal in
                     return sameDay(date1: meal.scheduledDate, date2: currentDate)
-                }){
+                }) != nil{
                     ForEach(mealsOnDate, id:\.self) { meal in
                         VStack(alignment: .leading, spacing: 10) {
                             
@@ -105,6 +105,7 @@ struct CalenderView: View {
                 else {
                     
                     Text("No meal found")
+                    Spacer()
                 }
             }
             .padding()
@@ -114,7 +115,7 @@ struct CalenderView: View {
             
             currentDate  = getCurMonth()
         }
-        Spacer()
+        
     }
     
     @ViewBuilder

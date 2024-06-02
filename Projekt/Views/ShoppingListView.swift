@@ -94,3 +94,4 @@ struct ShoppingListView: View {
     return ShoppingListView()
         .modelContainer(container)
 }
+
