@@ -11,7 +11,6 @@ import SwiftData
 struct RecipePickerView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State var recipeStore = RecipeStore.recipeStore
     @Query var recipes: [Recipe]
     @State var searchText = ""
     @State var pickedDate: Date
@@ -56,12 +55,9 @@ struct RecipePickerView: View {
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            let meal = Meal(recipe: recipe, scheduledDate: pickedDate)
-                            modelContext.insert(meal)
-                            print(meal.scheduledDate)
+                            recipe.addMeals(date: pickedDate, into: modelContext)
                             dismiss()
                         }
-
                     }
                 }
             .searchable(text: $searchText)

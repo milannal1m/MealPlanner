@@ -14,7 +14,7 @@ private var endColor = Color(red: 217/255, green: 193/255, blue: 165/255)
 
 struct RecipeView: View {
     
-    @State var recipe: Recipe?
+    @State var recipe: Recipe
     @State var textDescription = ""
     @State var textButton = "Edit"
     @State var toggleEdit = true
@@ -24,7 +24,7 @@ struct RecipeView: View {
         NavigationStack {
             ZStack {
                 VStack{
-                    if let imageData = recipe!.imageData,
+                    if let imageData = recipe.imageData,
                        let uiImage = UIImage(data: imageData){
                         Image(uiImage: uiImage)
                             .resizable()
@@ -49,7 +49,7 @@ struct RecipeView: View {
                     
                     TextField("Please enter recipe description", text: $textDescription, axis: .vertical)
                         .onAppear(perform: {
-                            textDescription = recipe!.recipeDescription!
+                            textDescription = recipe.recipeDescription ?? ""
                         })
                         .foregroundStyle(.black)
                         .background(Color.white)
@@ -62,20 +62,20 @@ struct RecipeView: View {
                         .frame(width: 300)
                         .lineLimit(3, reservesSpace: true)
                         .onTapGesture {
-                            recipe!.recipeDescription = textDescription
+                            recipe.recipeDescription = textDescription
                         }
-                    Text("Cooking Duration: \(recipe!.cookingTime ?? "Not Specified")")
+                    Text("Cooking Duration: \(recipe.cookingTime ?? "Not Specified")")
                     IngredientList(recipe: recipe)
                 }
                 .task(id: selectedPhoto){
                     if let data = try? await selectedPhoto?.loadTransferable(type: Data.self){
-                        recipe!.imageData = data
+                        recipe.imageData = data
                     }
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading){
-                    Text(recipe!.name)
+                    Text(recipe.name)
                         .bold()
                         .font(.system(size: 26))
                 }

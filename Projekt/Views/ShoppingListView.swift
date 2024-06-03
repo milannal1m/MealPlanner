@@ -36,6 +36,14 @@ struct ShoppingListView: View {
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
+                    .onAppear{
+                        do {
+                            try shoppingList.updateShoppingList(duration: selectedDuration, into: modelContext)
+                            logger.info("Updating Shopping List Succeeded")
+                        } catch {
+                            logger.info("Updating Shopping List Failed")
+                        }
+                    }
                     .onChange(of: selectedDuration){
                         do {
                             try shoppingList.updateShoppingList(duration: selectedDuration, into: modelContext)

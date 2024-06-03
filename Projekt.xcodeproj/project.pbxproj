@@ -17,9 +17,7 @@
 		F11B9FA62BDD092D005AA0D8 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B9FA52BDD092D005AA0D8 /* ShoppingList.swift */; };
 		F15ABB022C0CD35200B1FD64 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15ABB012C0CD35200B1FD64 /* ShoppingListView.swift */; };
 		F169F0D62BEB6941004FF790 /* ShoppingListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F169F0D52BEB6941004FF790 /* ShoppingListRow.swift */; };
-		F176AFB82BE8E5CB00E033DC /* TestRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F176AFB72BE8E5CB00E033DC /* TestRecipeView.swift */; };
 		F17B83122BEAA11200546E65 /* ShoppingListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */; };
-		F1CBDD702BDFF43C0093091D /* RecipeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CBDD6F2BDFF43C0093091D /* RecipeStore.swift */; };
 		F1CBDD732BE004B00093091D /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CBDD722BE004B00093091D /* previewContainer.swift */; };
 		F1CBDD752BE016430093091D /* IngredientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CBDD742BE016430093091D /* IngredientList.swift */; };
 		F1DCCBA32BD7CB8300ADA03F /* ProjektApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCCBA22BD7CB8300ADA03F /* ProjektApp.swift */; };
@@ -40,9 +38,7 @@
 		F11B9FA52BDD092D005AA0D8 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		F15ABB012C0CD35200B1FD64 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		F169F0D52BEB6941004FF790 /* ShoppingListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRow.swift; sourceTree = "<group>"; };
-		F176AFB72BE8E5CB00E033DC /* TestRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRecipeView.swift; sourceTree = "<group>"; };
 		F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListEntry.swift; sourceTree = "<group>"; };
-		F1CBDD6F2BDFF43C0093091D /* RecipeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeStore.swift; sourceTree = "<group>"; };
 		F1CBDD722BE004B00093091D /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		F1CBDD742BE016430093091D /* IngredientList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientList.swift; sourceTree = "<group>"; };
 		F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Projekt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +69,6 @@
 				F11B9F9C2BDD0638005AA0D8 /* CalenderView.swift */,
 				F1CBDD742BE016430093091D /* IngredientList.swift */,
 				34C5CDBB2BE8E082007F7AC6 /* RecipeView.swift */,
-				F176AFB72BE8E5CB00E033DC /* TestRecipeView.swift */,
 				F1EE50642C0B4ADE00D5B498 /* RecipePickerView.swift */,
 				F15ABB012C0CD35200B1FD64 /* ShoppingListView.swift */,
 			);
@@ -87,7 +82,6 @@
 				F11B9FA12BDD08F5005AA0D8 /* Ingredient.swift */,
 				F11B9FA32BDD0900005AA0D8 /* Meal.swift */,
 				F11B9FA52BDD092D005AA0D8 /* ShoppingList.swift */,
-				F1CBDD6F2BDFF43C0093091D /* RecipeStore.swift */,
 				F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */,
 				34F497762C0A98FD00997847 /* DateCalendar.swift */,
 			);
@@ -217,7 +211,6 @@
 				F1CBDD732BE004B00093091D /* previewContainer.swift in Sources */,
 				F1EE50652C0B4ADE00D5B498 /* RecipePickerView.swift in Sources */,
 				F17B83122BEAA11200546E65 /* ShoppingListEntry.swift in Sources */,
-				F176AFB82BE8E5CB00E033DC /* TestRecipeView.swift in Sources */,
 				F11B9FA62BDD092D005AA0D8 /* ShoppingList.swift in Sources */,
 				F1DCCBA52BD7CB8300ADA03F /* MainView.swift in Sources */,
 				34F497772C0A98FD00997847 /* DateCalendar.swift in Sources */,
@@ -230,7 +223,6 @@
 				F1CBDD752BE016430093091D /* IngredientList.swift in Sources */,
 				F11B9F9D2BDD0638005AA0D8 /* CalenderView.swift in Sources */,
 				F1DCCBA32BD7CB8300ADA03F /* ProjektApp.swift in Sources */,
-				F1CBDD702BDFF43C0093091D /* RecipeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

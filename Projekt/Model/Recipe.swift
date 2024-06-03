@@ -16,26 +16,29 @@ class Recipe: Identifiable {
     @Attribute(.unique) let id = UUID()
     let name: String
     @Relationship(deleteRule: .cascade, inverse:\Ingredient.recipe) var ingredients: [Ingredient] = []
+    @Relationship(deleteRule: .cascade, inverse:\Meal.recipe) var meals: [Meal] = []
     
     //optional variables
-    
-    //let Photo
-    //let photo: UIImage?
+
     @Attribute(.externalStorage) var imageData: Data? = nil
     let cookingTime: String? // in minutes
     var recipeDescription: String?
     
     init(name:String, photo:UIImage? = nil, cookingTime:String? = nil, recipeDescription:String? = nil ) {
         self.name = name
-        //self.photo = photo
         self.cookingTime = cookingTime
         self.recipeDescription = recipeDescription
     }
     
     func addIngredient(name:String, amount:Float, unit:String, into context: ModelContext){
-        let ingredient = Ingredient(name: name,amount:amount,unit: unit)
+        let ingredient = Ingredient(name: name,amount:amount,unit: unit, recipe:self)
         self.ingredients.append(ingredient)
         context.insert(ingredient)
+    }
+    
+    func addMeals(date:Date, into context: ModelContext){
+        let meal = Meal(recipe: self, scheduledDate: date)
+        context.insert(meal)
     }
 }
 

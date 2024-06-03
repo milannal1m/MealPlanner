@@ -17,9 +17,10 @@ class Ingredient: Identifiable {
     var unit: String
     var recipe: Recipe? = nil
 
-    init(name: String, amount: Float, unit: String) {
+    init(name: String, amount: Float, unit: String, recipe:Recipe? = nil) {
         self.name = name
         self.amount = amount
         self.unit = unit
+        self.recipe = recipe
     }
 }

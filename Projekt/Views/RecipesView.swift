@@ -11,7 +11,6 @@ import PhotosUI
 
 struct RecipesView: View {
     @Environment(\.modelContext) private var modelContext
-    @State var recipeStore = RecipeStore.recipeStore
     @Query var recipes: [Recipe]
     @State private var ingredients = [Ingredient]()
     @State private var showCreateRecipe = false
@@ -48,40 +47,44 @@ struct RecipesView: View {
     var body: some View {
         NavigationStack{
             List {
-                ForEach(searchedRecipes, id: \.self) { recipe in
-                    HStack {
-                        if let imageData = recipe.imageData,
-                           let uiImage = UIImage(data: imageData){
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 75,maxHeight: 75)
+                ForEach(searchedRecipes, id: \.self) {recipe in
+                    NavigationLink(destination: RecipeView(recipe: recipe)) {
+                        HStack {
+                            if let imageData = recipe.imageData,
+                               let uiImage = UIImage(data: imageData){
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 75,maxHeight: 75)
+                                
+                            }else{
+                                Image(systemName: "fork.knife")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 75,maxHeight: 75)
+                            }
                             
-                        }else{
-                            Image(systemName: "fork.knife")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 75,maxHeight: 75)
+                            VStack {
+                                Text("\(recipe.name)")
+                                    .bold()
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(5)
+                                Text(recipePreview(recipeDescription: recipe.recipeDescription ?? ""))
+                                    .font(.system(size:13))
+                                Spacer()
+                            }
+
                         }
-                        
-                        VStack {
-                            Text("\(recipe.name)")
-                                .bold()
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .padding(5)
-                            Text(recipePreview(recipeDescription: recipe.recipeDescription ?? ""))
-                                .font(.system(size:13))
-                            Spacer()
-                        }
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
+                        .contentShape(Rectangle())
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        showRecipeView = true
-                    }
+                    
                 }
+                .onDelete(perform: { indexSet in
+                    for index in indexSet {
+                            let recipe = recipes[index]
+                            modelContext.delete(recipe)
+                        }
+                })
             }
             .searchable(text: $searchText)
             .toolbar{
@@ -107,7 +110,8 @@ struct RecipesView: View {
                 TextField("Cooking Duration",text:$cookingDuration)
                 Button("Cancel"){}
                 Button("Ok"){
-                    currentRecipe = recipeStore.createRecipe(name:recipeName, cookingTime: cookingDuration, recipeDescription: recipeDescription, into: modelContext)
+                    currentRecipe = Recipe(name:recipeName, cookingTime: cookingDuration, recipeDescription: recipeDescription)
+                    modelContext.insert(currentRecipe!)
                     showRecipeView = true
                     recipeName = ""
                     cookingDuration = ""
@@ -115,7 +119,7 @@ struct RecipesView: View {
                 }
             }
             .sheet(isPresented: $showRecipeView){
-                RecipeView(recipe: currentRecipe)
+                RecipeView(recipe: currentRecipe ?? Recipe(name: "Something went wrong"))
             }
         }
     }
