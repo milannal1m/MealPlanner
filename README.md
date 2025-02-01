@@ -70,19 +70,20 @@ Project/
 ```
 
 ## Models ##
-* Calendar: Class for managing calendar data.
-* DateCalendar: Structure for managing date entries.
-* Ingredient: Class for managing ingredients.
-* Meal: Class for managing meals.
-* Recipe: Class for managing recipes.
-* ShoppingList: Class for managing the shopping list.
-* ShoppingListEntry: Class for managing entries in the shopping list.
+* [Calendar: ](Calendar.swift)Manages calendar data
+* [DateCalendar: ](DateCalendar.swift)Manages date entries
+* [Ingredient: ](Ingredient.swift)Represents an ingredient
+* [Meal: ](Meal.swift)Stores meal details
+* [Recipe: ](Recipe.swift)Holds recipe information
+* [ShoppingList: ](ShoppingList.swift)Tracks the entire shopping list
+* [ShoppingListEntry: ](ShoppingListEntry.swift)Represents an item in the shopping list
 
 ## Views ##
-* [Calendar: Manages calendar data](Calendar.swift)
-* [DateCalendar: Manages date entries](DateCalendar.swift)
-* [Ingredient: Represents an ingredient](Ingredient.swift)
-* [Meal: Stores meal details](Meal.swift)
-* [Recipe: Holds recipe information](Recipe.swift)
-* [ShoppingList: Tracks the entire shopping list](ShoppingList.swift)
-* [ShoppingListEntry: Represents an item in the shopping list](ShoppingListEntry.swift)
+* [CalenderView: ](CalenderView.swift)Displays calendar details
+* [IngredientList: ](IngredientList.swift)Shows a list of ingredients
+* [MainView: ](MainView.swift)Main application view with navigation
+* [RecipePickerView: ](RecipePickerView.swift)Enables recipe selection
+* [RecipeView: ](RecipeView.swift)Displays and edits a single recipe
+* [RecipesView: ](RecipesView.swift)Manages and displays all recipes
+* [ShoppingListRow: ](ShoppingListRow.swift)Displays an individual shopping list item
+* [ShoppingListView: ](ShoppingListView.swift)Displays and manages the entire shopping list
