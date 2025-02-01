@@ -79,11 +79,11 @@ Project/
 * [ShoppingListEntry: ](Projekt/Model/ShoppingListEntry.swift)Represents an item in the shopping list
 
 ## Views ##
-* [CalenderView: ](Projekt/View/CalenderView.swift)Displays calendar details
-* [IngredientList: ](Projekt/View/IngredientList.swift)Shows a list of ingredients
-* [MainView: ](Projekt/View/MainView.swift)Main application view with navigation
-* [RecipePickerView: ](Projekt/View/RecipePickerView.swift)Enables recipe selection
-* [RecipeView: ](Projekt/View/RecipeView.swift)Displays and edits a single recipe
-* [RecipesView: ](Projekt/View/RecipesView.swift)Manages and displays all recipes
-* [ShoppingListRow: ](Projekt/View/ShoppingListRow.swift)Displays an individual shopping list item
-* [ShoppingListView: ](Projekt/View/ShoppingListView.swift)Displays and manages the entire shopping list
+* [CalenderView: ](Projekt/Views/CalenderView.swift)Displays calendar details
+* [IngredientList: ](Projekt/Views/IngredientList.swift)Shows a list of ingredients
+* [MainView: ](Projekt/Views/MainView.swift)Main application view with navigation
+* [RecipePickerView: ](Projekt/Views/RecipePickerView.swift)Enables recipe selection
+* [RecipeView: ](Projekt/Views/RecipeView.swift)Displays and edits a single recipe
+* [RecipesView: ](Projekt/Views/RecipesView.swift)Manages and displays all recipes
+* [ShoppingListRow: ](Projekt/Views/ShoppingListRow.swift)Displays an individual shopping list item
+* [ShoppingListView: ](Projekt/Views/ShoppingListView.swift)Displays and manages the entire shopping list
