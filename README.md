@@ -19,7 +19,7 @@ The app was developed as part of a student project.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/project.git
+    git clone https://github.com/milannal1m/MealPlanner-iOS-App.git
     ```
 2. Open the project file in Xcode:
     ```sh
@@ -70,7 +70,7 @@ Project/
 ```
 
 ## Models ##
-* [Calendar: ](Calendar.swift)Manages calendar data
+* [Calendar: ](Model/Calendar.swift)Manages calendar data
 * [DateCalendar: ](DateCalendar.swift)Manages date entries
 * [Ingredient: ](Ingredient.swift)Represents an ingredient
 * [Meal: ](Meal.swift)Stores meal details
