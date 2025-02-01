@@ -70,20 +70,20 @@ Project/
 ```
 
 ## Models ##
-Calendar: Class for managing calendar data.
-DateCalendar: Structure for managing date entries.
-Ingredient: Class for managing ingredients.
-Meal: Class for managing meals.
-Recipe: Class for managing recipes.
-ShoppingList: Class for managing the shopping list.
-ShoppingListEntry: Class for managing entries in the shopping list.
+* Calendar: Class for managing calendar data.
+* DateCalendar: Structure for managing date entries.
+* Ingredient: Class for managing ingredients.
+* Meal: Class for managing meals.
+* Recipe: Class for managing recipes.
+* ShoppingList: Class for managing the shopping list.
+* ShoppingListEntry: Class for managing entries in the shopping list.
 
 ## Views ##
-CalenderView: View for displaying and managing the calendar.
-IngredientList: View for displaying and managing the ingredient list.
-MainView: Main view of the app with tab navigation.
-RecipePickerView: View for selecting recipes.
-RecipeView: View for displaying and editing a recipe.
-RecipesView: View for displaying and managing all recipes.
-ShoppingListRow: View for individual entries in the shopping list.
-ShoppingListView: View for displaying and managing the shopping list.
+* CalenderView: View for displaying and managing the calendar.
+* IngredientList: View for displaying and managing the ingredient list.
+* MainView: Main view of the app with tab navigation.
+* RecipePickerView: View for selecting recipes.
+* RecipeView: View for displaying and editing a recipe.
+* RecipesView: View for displaying and managing all recipes.
+* ShoppingListRow: View for individual entries in the shopping list.
+* ShoppingListView: View for displaying and managing the shopping list.
