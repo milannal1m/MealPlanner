@@ -70,20 +70,20 @@ Project/
 ```
 
 ## Models ##
-* [Calendar: ](Model/Calendar.swift)Manages calendar data
-* [DateCalendar: ](DateCalendar.swift)Manages date entries
-* [Ingredient: ](Ingredient.swift)Represents an ingredient
-* [Meal: ](Meal.swift)Stores meal details
-* [Recipe: ](Recipe.swift)Holds recipe information
-* [ShoppingList: ](ShoppingList.swift)Tracks the entire shopping list
-* [ShoppingListEntry: ](ShoppingListEntry.swift)Represents an item in the shopping list
+* [Calendar: ](Projekt/Model/Calendar.swift)Manages calendar data
+* [DateCalendar: ](Projekt/Model/DateCalendar.swift)Manages date entries
+* [Ingredient: ](Projekt/Model/Ingredient.swift)Represents an ingredient
+* [Meal: ](Projekt/Model/Meal.swift)Stores meal details
+* [Recipe: ](Projekt/Model/Recipe.swift)Holds recipe information
+* [ShoppingList: ](Projekt/Model/ShoppingList.swift)Tracks the entire shopping list
+* [ShoppingListEntry: ](Projekt/Model/ShoppingListEntry.swift)Represents an item in the shopping list
 
 ## Views ##
-* [CalenderView: ](CalenderView.swift)Displays calendar details
-* [IngredientList: ](IngredientList.swift)Shows a list of ingredients
-* [MainView: ](MainView.swift)Main application view with navigation
-* [RecipePickerView: ](RecipePickerView.swift)Enables recipe selection
-* [RecipeView: ](RecipeView.swift)Displays and edits a single recipe
-* [RecipesView: ](RecipesView.swift)Manages and displays all recipes
-* [ShoppingListRow: ](ShoppingListRow.swift)Displays an individual shopping list item
-* [ShoppingListView: ](ShoppingListView.swift)Displays and manages the entire shopping list
+* [CalenderView: ](Projekt/View/CalenderView.swift)Displays calendar details
+* [IngredientList: ](Projekt/View/IngredientList.swift)Shows a list of ingredients
+* [MainView: ](Projekt/View/MainView.swift)Main application view with navigation
+* [RecipePickerView: ](Projekt/View/RecipePickerView.swift)Enables recipe selection
+* [RecipeView: ](Projekt/View/RecipeView.swift)Displays and edits a single recipe
+* [RecipesView: ](Projekt/View/RecipesView.swift)Manages and displays all recipes
+* [ShoppingListRow: ](Projekt/View/ShoppingListRow.swift)Displays an individual shopping list item
+* [ShoppingListView: ](Projekt/View/ShoppingListView.swift)Displays and manages the entire shopping list
