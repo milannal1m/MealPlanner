@@ -79,10 +79,10 @@ Project/
 * ShoppingListEntry: Class for managing entries in the shopping list.
 
 ## Views ##
-* [Calendar](Calendar.swift)
-* [DateCalendar](DateCalendar.swift)
-* [Ingredient](Ingredient.swift)
-* [Meal](Meal.swift)
-* [Recipe](Recipe.swift)
-* [ShoppingList](ShoppingList.swift)
-* [ShoppingListEntry](ShoppingListEntry.swift)
+* [Calendar: Manages calendar data](Calendar.swift)
+* [DateCalendar: Manages date entries](DateCalendar.swift)
+* [Ingredient: Represents an ingredient](Ingredient.swift)
+* [Meal: Stores meal details](Meal.swift)
+* [Recipe: Holds recipe information](Recipe.swift)
+* [ShoppingList: Tracks the entire shopping list](ShoppingList.swift)
+* [ShoppingListEntry: Represents an item in the shopping list](ShoppingListEntry.swift)
