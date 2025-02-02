@@ -41,7 +41,7 @@
 		F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListEntry.swift; sourceTree = "<group>"; };
 		F1CBDD722BE004B00093091D /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		F1CBDD742BE016430093091D /* IngredientList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientList.swift; sourceTree = "<group>"; };
-		F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Projekt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DCCB9F2BD7CB8300ADA03F /* MealPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DCCBA22BD7CB8300ADA03F /* ProjektApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjektApp.swift; sourceTree = "<group>"; };
 		F1DCCBA42BD7CB8300ADA03F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F1DCCBA62BD7CB8400ADA03F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		F1DCCB962BD7CB8300ADA03F = {
 			isa = PBXGroup;
 			children = (
-				F1DCCBA12BD7CB8300ADA03F /* Projekt */,
+				F1DCCBA12BD7CB8300ADA03F /* MealPlanner */,
 				F1DCCBA02BD7CB8300ADA03F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,12 +107,12 @@
 		F1DCCBA02BD7CB8300ADA03F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */,
+				F1DCCB9F2BD7CB8300ADA03F /* MealPlanner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F1DCCBA12BD7CB8300ADA03F /* Projekt */ = {
+		F1DCCBA12BD7CB8300ADA03F /* MealPlanner */ = {
 			isa = PBXGroup;
 			children = (
 				F11B9F9E2BDD0830005AA0D8 /* Model */,
@@ -122,7 +122,7 @@
 				F1CBDD712BE004970093091D /* Support */,
 				F1DCCBA82BD7CB8400ADA03F /* Preview Content */,
 			);
-			path = Projekt;
+			path = MealPlanner;
 			sourceTree = "<group>";
 		};
 		F1DCCBA82BD7CB8400ADA03F /* Preview Content */ = {
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F1DCCB9E2BD7CB8300ADA03F /* Projekt */ = {
+		F1DCCB9E2BD7CB8300ADA03F /* MealPlanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F1DCCBAD2BD7CB8400ADA03F /* Build configuration list for PBXNativeTarget "Projekt" */;
+			buildConfigurationList = F1DCCBAD2BD7CB8400ADA03F /* Build configuration list for PBXNativeTarget "MealPlanner" */;
 			buildPhases = (
 				F1DCCB9B2BD7CB8300ADA03F /* Sources */,
 				F1DCCB9C2BD7CB8300ADA03F /* Frameworks */,
@@ -148,11 +148,11 @@
 			);
 			dependencies = (
 			);
-			name = Projekt;
+			name = MealPlanner;
 			packageProductDependencies = (
 			);
 			productName = Projekt;
-			productReference = F1DCCB9F2BD7CB8300ADA03F /* Projekt.app */;
+			productReference = F1DCCB9F2BD7CB8300ADA03F /* MealPlanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -170,7 +170,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F1DCCB9A2BD7CB8300ADA03F /* Build configuration list for PBXProject "Projekt" */;
+			buildConfigurationList = F1DCCB9A2BD7CB8300ADA03F /* Build configuration list for PBXProject "MealPlanner" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F1DCCB9E2BD7CB8300ADA03F /* Projekt */,
+				F1DCCB9E2BD7CB8300ADA03F /* MealPlanner */,
 			);
 		};
 /* End PBXProject section */
@@ -355,7 +355,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Projekt/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MealPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = 83258QS695;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -385,7 +385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Projekt/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MealPlanner/Preview Content\"";
 				DEVELOPMENT_TEAM = 83258QS695;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -411,7 +411,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F1DCCB9A2BD7CB8300ADA03F /* Build configuration list for PBXProject "Projekt" */ = {
+		F1DCCB9A2BD7CB8300ADA03F /* Build configuration list for PBXProject "MealPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1DCCBAB2BD7CB8400ADA03F /* Debug */,
@@ -420,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F1DCCBAD2BD7CB8400ADA03F /* Build configuration list for PBXNativeTarget "Projekt" */ = {
+		F1DCCBAD2BD7CB8400ADA03F /* Build configuration list for PBXNativeTarget "MealPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1DCCBAE2BD7CB8400ADA03F /* Debug */,

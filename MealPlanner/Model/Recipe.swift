@@ -21,13 +21,10 @@ class Recipe: Identifiable {
     //optional variables
 
     @Attribute(.externalStorage) var imageData: Data? = nil
-    let cookingTime: String? // in minutes
-    var recipeDescription: String?
+
     
-    init(name:String, photo:UIImage? = nil, cookingTime:String? = nil, recipeDescription:String? = nil ) {
+    init(name:String, photo:UIImage? = nil) {
         self.name = name
-        self.cookingTime = cookingTime
-        self.recipeDescription = recipeDescription
     }
     
     func addIngredient(name:String, amount:Float, unit:String, into context: ModelContext){

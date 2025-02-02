@@ -16,8 +16,6 @@ struct RecipesView: View {
     @State private var showCreateRecipe = false
     @State private var showRecipeView = false
     @State private var recipeName = ""
-    @State private var recipeDescription = ""
-    @State private var cookingDuration = ""
     @State private var textFieldData: [String] = []
     @State var currentRecipe: Recipe? = nil
     @State var searchText = ""
@@ -69,8 +67,6 @@ struct RecipesView: View {
                                     .bold()
                                     .frame(maxWidth: .infinity, alignment: .center)
                                     .padding(5)
-                                Text(recipePreview(recipeDescription: recipe.recipeDescription ?? ""))
-                                    .font(.system(size:13))
                                 Spacer()
                             }
 
@@ -106,16 +102,12 @@ struct RecipesView: View {
                 
                 TextField("Name",text:$recipeName)
                 
-                TextField("Recipe Description",text:$recipeDescription)
-                TextField("Cooking Duration",text:$cookingDuration)
                 Button("Cancel"){}
                 Button("Ok"){
-                    currentRecipe = Recipe(name:recipeName, cookingTime: cookingDuration, recipeDescription: recipeDescription)
+                    currentRecipe = Recipe(name:recipeName)
                     modelContext.insert(currentRecipe!)
                     showRecipeView = true
                     recipeName = ""
-                    cookingDuration = ""
-                    recipeDescription = ""
                 }
             }
             .sheet(isPresented: $showRecipeView){

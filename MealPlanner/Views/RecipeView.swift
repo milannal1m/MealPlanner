@@ -9,14 +9,9 @@ import SwiftUI
 import SwiftData
 import _PhotosUI_SwiftUI
 
-private var startColor = Color(red: 0.94, green: 0.94, blue: 0.86)
-private var endColor = Color(red: 217/255, green: 193/255, blue: 165/255)
-
 struct RecipeView: View {
     
     @State var recipe: Recipe
-    @State var textDescription = ""
-    @State var textButton = "Edit"
     @State var toggleEdit = true
     @State private var selectedPhoto: PhotosPickerItem?
     
@@ -47,24 +42,6 @@ struct RecipeView: View {
                         .font(.title2)
                         .bold()
                     
-                    TextField("Please enter recipe description", text: $textDescription, axis: .vertical)
-                        .onAppear(perform: {
-                            textDescription = recipe.recipeDescription ?? ""
-                        })
-                        .foregroundStyle(.black)
-                        .background(Color.white)
-                        .font(.system(size: 18))
-                        .border(Color.black)
-                        .padding(.top, 20)
-                        .padding(.bottom, 15)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(10)
-                        .frame(width: 300)
-                        .lineLimit(3, reservesSpace: true)
-                        .onTapGesture {
-                            recipe.recipeDescription = textDescription
-                        }
-                    Text("Cooking Duration: \(recipe.cookingTime ?? "Not Specified")")
                     IngredientList(recipe: recipe)
                 }
                 .task(id: selectedPhoto){
@@ -89,7 +66,7 @@ struct RecipeView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Ingredient.self, Recipe.self, configurations: config)
     
-    let recipe = Recipe(name: "Spaghetti Bolognese", recipeDescription: "hh")
+    let recipe = Recipe(name: "Spaghetti Bolognese")
     
     container.mainContext.insert(recipe)
     
