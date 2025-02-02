@@ -11,9 +11,6 @@ The app was developed as part of a student project.
 - [Project Structure](#project-structure)
 - [Models](#models)
 - [Views](#views)
-- [Support](#support)
-- [Authors](#authors)
-- [License](#license)
 
 ## Installation
 
