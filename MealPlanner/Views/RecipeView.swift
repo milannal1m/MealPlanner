@@ -38,10 +38,6 @@ struct RecipeView: View {
                     PhotosPicker("Select photo of meal", selection: $selectedPhoto, matching: .images)
                         .padding(.bottom, 20)
                     
-                    Text("Recipe")
-                        .font(.title2)
-                        .bold()
-                    
                     IngredientList(recipe: recipe)
                 }
                 .task(id: selectedPhoto){

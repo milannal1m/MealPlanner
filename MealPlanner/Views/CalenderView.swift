@@ -16,6 +16,8 @@ struct CalenderView: View {
     @Environment(\.modelContext) private var modelContext
     @State var showRecipePicker: Bool = false
     @State var mealsOnDate: [Meal] = []
+    
+    
     var body: some View {
         VStack{
             
@@ -58,6 +60,11 @@ struct CalenderView: View {
             .sheet(isPresented: $showRecipePicker){
                 RecipePickerView(pickedDate: currentDate)
             }
+            .onChange(of: showRecipePicker){
+                mealsOnDate = meals.filter{ meal in
+                    sameDay(date1: meal.scheduledDate, date2: currentDate)
+                }
+            }
             
             HStack(spacing: 10) {
                 ForEach(weekDays, id: \.self){day in
@@ -97,10 +104,32 @@ struct CalenderView: View {
                 }) != nil{
                     ForEach(mealsOnDate, id:\.self) { meal in
                         VStack(alignment: .leading, spacing: 10) {
-                            
-                            Text("\(meal.recipe.name)")
+                            HStack{
+                                
+                                if let imageData = meal.recipe.imageData,
+                                   let uiImage = UIImage(data: imageData){
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(maxWidth: 50,maxHeight: 50)
+                                        .padding(.top, 20)
+                                    
+                                }else{
+                                    Image(systemName: "fork.knife")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(maxWidth: 50,maxHeight: 50)
+                                        .padding(.top, 30)
+                                }
+                                
+                                Text("\(meal.recipe.name)")
+                                    .bold()
+                                
+                                Spacer()
+                            }
                         }
                     }
+                    Spacer()
                 }
                 else {
                     
@@ -117,6 +146,7 @@ struct CalenderView: View {
         }
         
     }
+
     
     @ViewBuilder
     func CView(value: DateCalendar.DateValue) -> some View {
@@ -215,7 +245,13 @@ extension Date{
 }
 
 #Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Ingredient.self, Recipe.self, configurations: config)
+    
+    let recipe = Recipe(name: "Spaghetti Bolognese")
+    
+    container.mainContext.insert(recipe)
     
     return CalenderView()
+        .modelContainer(container)
 }
-
