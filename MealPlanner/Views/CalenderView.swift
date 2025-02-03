@@ -17,11 +17,14 @@ struct CalenderView: View {
     @State var showRecipePicker: Bool = false
     @State var mealsOnDate: [Meal] = []
     
+    let weekDays: [String] = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        return formatter.shortWeekdaySymbols
+    }()
     
     var body: some View {
         VStack{
-            
-            let weekDays: [String] = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
             
             HStack(spacing: 15) {
                 VStack {

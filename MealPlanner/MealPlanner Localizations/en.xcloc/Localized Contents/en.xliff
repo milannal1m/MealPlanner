@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="MealPlanner/Localizable.xcstrings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.0" build-num="16A242d"/>
+    </header>
+    <body>
+      <trans-unit id="" xml:space="preserve">
+        <source/>
+        <target state="new"/>
+        <note/>
+      </trans-unit>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <target state="new">%@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="%@ %@" xml:space="preserve">
+        <source>%1$@ %2$@</source>
+        <target state="new">%1$@ %2$@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="%lld" xml:space="preserve">
+        <source>%lld</source>
+        <target state="new">%lld</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Add Ingredient" xml:space="preserve">
+        <source>Add Ingredient</source>
+        <target state="new">Add Ingredient</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Amount" xml:space="preserve">
+        <source>Amount</source>
+        <target state="new">Amount</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Edit tag" xml:space="preserve">
+        <source>Edit tag</source>
+        <target state="new">Edit tag</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Einkaufsliste" xml:space="preserve">
+        <source>Einkaufsliste</source>
+        <target state="new">Einkaufsliste</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Enter new Recipe" xml:space="preserve">
+        <source>Enter new Recipe</source>
+        <target state="new">Enter new Recipe</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Ingredients" xml:space="preserve">
+        <source>Ingredients</source>
+        <target state="new">Ingredients</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Kalender" xml:space="preserve">
+        <source>Kalender</source>
+        <target state="new">Kalender</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Meals" xml:space="preserve">
+        <source>Meals</source>
+        <target state="new">Meals</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Name" xml:space="preserve">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="No meal found" xml:space="preserve">
+        <source>No meal found</source>
+        <target state="new">No meal found</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Ok" xml:space="preserve">
+        <source>Ok</source>
+        <target state="new">Ok</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Recipes" xml:space="preserve">
+        <source>Recipes</source>
+        <target state="new">Recipes</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Rezepte" xml:space="preserve">
+        <source>Rezepte</source>
+        <target state="new">Rezepte</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Select photo of meal" xml:space="preserve">
+        <source>Select photo of meal</source>
+        <target state="new">Select photo of meal</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Shopping List" xml:space="preserve">
+        <source>Shopping List</source>
+        <target state="new">Shopping List</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Unit" xml:space="preserve">
+        <source>Unit</source>
+        <target state="new">Unit</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="MealPlanner/MealPlanner-InfoPlist.xcstrings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.0" build-num="16A242d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>MealPlanner</source>
+        <target state="new">MealPlanner</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCalendarsUsageDescription" xml:space="preserve">
+        <source>This app requires access to the calendar</source>
+        <target state="new">This app requires access to the calendar</target>
+        <note>Privacy - Calendars Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

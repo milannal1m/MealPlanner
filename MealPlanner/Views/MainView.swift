@@ -43,8 +43,15 @@ struct MainView: View {
         
     }
 }
-#Preview {
+
+#Preview("Deutsch") {
     MainView()
         .modelContainer(previewContainer)
+        .environment(\.locale, Locale(identifier: "de"))
 }
 
+#Preview("English") {
+    MainView()
+        .modelContainer(previewContainer)
+        .environment(\.locale, Locale(identifier: "en"))
+}

@@ -12,6 +12,10 @@ enum ValidDuration {
     case oneDay
     case twoDays
     case threeDays
+    case fourDays
+    case fiveDays
+    case sixDays
+    case week
     
     var timeInterval: TimeInterval {
         switch self {
@@ -21,17 +25,33 @@ enum ValidDuration {
             return 2 * 24 * 60 * 60 // 2 days in seconds
         case .threeDays:
             return 3 * 24 * 60 * 60 // 3 days in seconds
+        case .fourDays:
+            return 4 * 24 * 60 * 60
+        case .fiveDays:
+            return 5 * 24 * 60 * 60
+        case .sixDays:
+            return 6 * 24 * 60 * 60
+        case .week:
+            return 7 * 24 * 60 * 60
         }
     }
     
     var durationString: String{
         switch self {
         case .oneDay:
-            return "1 Day"
+            return "1 " + NSLocalizedString("Day", comment: "")
         case .twoDays:
-            return "2 Days"
+            return "2 " + NSLocalizedString("Days", comment: "")
         case .threeDays:
-            return "3 Days"
+            return "3 " + NSLocalizedString("Days", comment: "")
+        case .fourDays:
+            return "4 " + NSLocalizedString("Days", comment: "")
+        case .fiveDays:
+            return "5 " + NSLocalizedString("Days", comment: "")
+        case .sixDays:
+            return "6 " + NSLocalizedString("Days", comment: "")
+        case .week:
+            return "1 " + NSLocalizedString("Week", comment: "")
         }
     }
 }

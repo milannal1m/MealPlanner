@@ -1,0 +1,76 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "Add Ingredient" : {
+
+    },
+    "Amount" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Edit tag" : {
+
+    },
+    "Einkaufsliste" : {
+
+    },
+    "Enter new Recipe" : {
+
+    },
+    "Ingredients" : {
+
+    },
+    "Kalender" : {
+
+    },
+    "Meals" : {
+
+    },
+    "Name" : {
+
+    },
+    "No meal found" : {
+
+    },
+    "Ok" : {
+
+    },
+    "Recipes" : {
+
+    },
+    "Rezepte" : {
+
+    },
+    "Select photo of meal" : {
+
+    },
+    "Shopping List" : {
+
+    },
+    "Unit" : {
+
+    }
+  },
+  "version" : "1.0"
+}

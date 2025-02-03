@@ -46,7 +46,6 @@ struct RecipesView: View {
         NavigationStack{
             List {
                 ForEach(searchedRecipes, id: \.self) {recipe in
-                    NavigationLink(destination: RecipeView(recipe: recipe)) {
                         HStack {
                             if let imageData = recipe.imageData,
                                let uiImage = UIImage(data: imageData){
@@ -71,8 +70,11 @@ struct RecipesView: View {
                             }
 
                         }
+                        .onTapGesture {
+                            currentRecipe = recipe
+                            showRecipeView = true
+                        }
                         .contentShape(Rectangle())
-                    }
                     
                 }
                 .onDelete(perform: { indexSet in

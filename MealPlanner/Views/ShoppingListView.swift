@@ -15,7 +15,7 @@ struct ShoppingListView: View {
     @ObservedObject var shoppingList = ShoppingList.shoppingList
     let duration = ValidDuration.oneDay
     private let logger = Logger(subsystem:Bundle.main.bundleIdentifier!, category: "ShoppingView")
-    let validDurations = [ValidDuration.oneDay, ValidDuration.twoDays, ValidDuration.threeDays]
+    let validDurations = [ValidDuration.oneDay, ValidDuration.twoDays, ValidDuration.threeDays, ValidDuration.fourDays, ValidDuration.fiveDays, ValidDuration.sixDays, ValidDuration.week]
     @State var selectedDuration = ValidDuration.oneDay
     
     
