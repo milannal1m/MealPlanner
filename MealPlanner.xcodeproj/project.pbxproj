@@ -18,6 +18,7 @@
 		F15ABB022C0CD35200B1FD64 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15ABB012C0CD35200B1FD64 /* ShoppingListView.swift */; };
 		F169F0D62BEB6941004FF790 /* ShoppingListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F169F0D52BEB6941004FF790 /* ShoppingListRow.swift */; };
 		F17B83122BEAA11200546E65 /* ShoppingListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */; };
+		F19413092D511C710039A033 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F19413082D511C710039A033 /* Localizable.xcstrings */; };
 		F1CBDD732BE004B00093091D /* previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CBDD722BE004B00093091D /* previewContainer.swift */; };
 		F1CBDD752BE016430093091D /* IngredientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CBDD742BE016430093091D /* IngredientList.swift */; };
 		F1DCCBA32BD7CB8300ADA03F /* ProjektApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCCBA22BD7CB8300ADA03F /* ProjektApp.swift */; };
@@ -39,6 +40,7 @@
 		F15ABB012C0CD35200B1FD64 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		F169F0D52BEB6941004FF790 /* ShoppingListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRow.swift; sourceTree = "<group>"; };
 		F17B83112BEAA11200546E65 /* ShoppingListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListEntry.swift; sourceTree = "<group>"; };
+		F19413082D511C710039A033 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F1CBDD722BE004B00093091D /* previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = previewContainer.swift; sourceTree = "<group>"; };
 		F1CBDD742BE016430093091D /* IngredientList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientList.swift; sourceTree = "<group>"; };
 		F1DCCB9F2BD7CB8300ADA03F /* MealPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,7 @@
 				F11B9F952BDD05FA005AA0D8 /* Views */,
 				F1DCCBA22BD7CB8300ADA03F /* ProjektApp.swift */,
 				F1DCCBA62BD7CB8400ADA03F /* Assets.xcassets */,
+				F19413082D511C710039A033 /* Localizable.xcstrings */,
 				F1CBDD712BE004970093091D /* Support */,
 				F1DCCBA82BD7CB8400ADA03F /* Preview Content */,
 			);
@@ -177,6 +180,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = F1DCCB962BD7CB8300ADA03F;
 			packageReferences = (
@@ -197,6 +201,7 @@
 			files = (
 				F1DCCBAA2BD7CB8400ADA03F /* Preview Assets.xcassets in Resources */,
 				F1DCCBA72BD7CB8400ADA03F /* Assets.xcassets in Resources */,
+				F19413092D511C710039A033 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +293,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -344,6 +350,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

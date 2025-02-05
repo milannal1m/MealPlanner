@@ -16,6 +16,9 @@ struct CalenderView: View {
     @Environment(\.modelContext) private var modelContext
     @State var showRecipePicker: Bool = false
     @State var mealsOnDate: [Meal] = []
+    @State var currentRecipe: Recipe? = nil
+    @State private var showRecipeView = false
+    var shoppingList = ShoppingList.shoppingList
     
     let weekDays: [String] = {
         let formatter = DateFormatter()
@@ -64,8 +67,13 @@ struct CalenderView: View {
                 RecipePickerView(pickedDate: currentDate)
             }
             .onChange(of: showRecipePicker){
+                currentRecipe = meals.last?.recipe ?? nil
                 mealsOnDate = meals.filter{ meal in
                     sameDay(date1: meal.scheduledDate, date2: currentDate)
+                }
+                do {
+                    try shoppingList.updateShoppingList(duration: shoppingList.duration, into: modelContext)
+                } catch {
                 }
             }
             
@@ -105,24 +113,21 @@ struct CalenderView: View {
                 if meals.first(where: { meal in
                     return sameDay(date1: meal.scheduledDate, date2: currentDate)
                 }) != nil{
-                    ForEach(mealsOnDate, id:\.self) { meal in
-                        VStack(alignment: .leading, spacing: 10) {
+                    List{
+                        ForEach(mealsOnDate, id:\.self) { meal in
                             HStack{
-                                
                                 if let imageData = meal.recipe.imageData,
                                    let uiImage = UIImage(data: imageData){
                                     Image(uiImage: uiImage)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(maxWidth: 50,maxHeight: 50)
-                                        .padding(.top, 20)
+                                        .frame(maxWidth: 30,maxHeight: 30)
                                     
                                 }else{
                                     Image(systemName: "fork.knife")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(maxWidth: 50,maxHeight: 50)
-                                        .padding(.top, 30)
+                                        .frame(maxWidth: 30,maxHeight: 30)
                                 }
                                 
                                 Text("\(meal.recipe.name)")
@@ -130,7 +135,25 @@ struct CalenderView: View {
                                 
                                 Spacer()
                             }
+                            .listRowBackground(Color.gray.opacity(0.1))
+                            .onTapGesture {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    currentRecipe = meal.recipe
+                                }
+                                showRecipeView = true
+                            }
                         }
+                        .onDelete(perform: { indexSet in
+                            for index in indexSet {
+                                    let meal = mealsOnDate[index]
+                                    modelContext.delete(meal)
+                                }
+                        })
+                    }
+                    .scrollContentBackground(.hidden)
+                    .sheet(isPresented: $showRecipeView){
+                        RecipeView(recipe: currentRecipe ?? Recipe(name: "Something went wrong"))
+                            .id(currentRecipe)
                     }
                     Spacer()
                 }

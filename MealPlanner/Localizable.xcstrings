@@ -108,6 +108,17 @@
         }
       }
     },
+    "for the selected duration" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gewählte Zeitspanne geplant"
+          }
+        }
+      }
+    },
     "Ingredients" : {
       "localizations" : {
         "de" : {
@@ -153,6 +164,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Keine Mahlzeiten gefunden"
+          }
+        }
+      }
+    },
+    "No Meals planned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Mahlzeiten für die "
           }
         }
       }

@@ -59,7 +59,7 @@ enum ValidDuration {
 class ShoppingList: Identifiable, ObservableObject {
     
     @Published var shoppingListEntries = [ShoppingListEntry]()
-    private var duration: ValidDuration
+    var duration: ValidDuration
     private var mealsInDuration = [Meal]()
 
     

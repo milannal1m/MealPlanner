@@ -29,11 +29,10 @@ struct IngredientList: View {
     }
     
     var body: some View {
-                VStack {
+                VStack(spacing: -10) {
                     HStack(alignment: .center, spacing: 10) {
                         Text("Ingredients")
                             .font(.title2.bold())
-                            .padding()
                         
                         Spacer()
                         
@@ -58,6 +57,7 @@ struct IngredientList: View {
                                 
                                     .font(.subheadline)
                             }
+                            .listRowBackground(Color.gray.opacity(0.1))
                             .contentShape(Rectangle())
                             .onTapGesture{
                                 tappedIngredientIdx = index
@@ -69,6 +69,7 @@ struct IngredientList: View {
                         }
                         .onDelete(perform: removeIngredients)
             }
+            .scrollContentBackground(.hidden)
             .alert("Add Ingredient", isPresented: $showAdd){
 
                 TextField("Name",text:$name)

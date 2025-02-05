@@ -17,7 +17,7 @@ struct RecipesView: View {
     @State private var showRecipeView = false
     @State private var recipeName = ""
     @State private var textFieldData: [String] = []
-    @State var currentRecipe: Recipe? = nil
+    @State var currentRecipe: Recipe = Recipe(name: "Test")
     @State var searchText = ""
 
 
@@ -70,8 +70,11 @@ struct RecipesView: View {
                             }
 
                         }
+                        .listRowBackground(Color.gray.opacity(0.1))
                         .onTapGesture {
-                            currentRecipe = recipe
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                currentRecipe = recipe
+                            }
                             showRecipeView = true
                         }
                         .contentShape(Rectangle())
@@ -84,6 +87,7 @@ struct RecipesView: View {
                         }
                 })
             }
+            .scrollContentBackground(.hidden)
             .searchable(text: $searchText)
             .toolbar{
                 ToolbarItem(placement: ToolbarItemPlacement.topBarTrailing) {
@@ -107,13 +111,14 @@ struct RecipesView: View {
                 Button("Cancel"){}
                 Button("Ok"){
                     currentRecipe = Recipe(name:recipeName)
-                    modelContext.insert(currentRecipe!)
+                    modelContext.insert(currentRecipe)
                     showRecipeView = true
                     recipeName = ""
                 }
             }
             .sheet(isPresented: $showRecipeView){
-                RecipeView(recipe: currentRecipe ?? Recipe(name: "Something went wrong"))
+                RecipeView(recipe: currentRecipe)
+                    .id(currentRecipe)
             }
         }
     }

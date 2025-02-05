@@ -21,9 +21,28 @@ struct ShoppingListView: View {
     
     var body: some View {
         NavigationStack{
-            List{
-                ForEach(shoppingList.shoppingListEntries){entry in
-                    ShoppingListRow(shoppingListEntry: entry)
+            VStack {
+                if shoppingList.shoppingListEntries.isEmpty {
+                    Text("No Meals planned")
+                        .font(.headline)
+                        .foregroundColor(.gray.opacity(0.7))
+                        .padding(.top,50)
+
+                    
+                    Text(NSLocalizedString("for the selected duration", comment: ""))
+                        .font(.headline)
+                        .foregroundColor(.gray.opacity(0.7))
+                        .padding(.top,5)
+                    
+                    Spacer()
+                       
+                } else {
+                    List {
+                        ForEach(shoppingList.shoppingListEntries) { entry in
+                            ShoppingListRow(shoppingListEntry: entry)
+                        }
+                        .listRowBackground(Color.gray.opacity(0.1))
+                    }
                 }
             }
             .toolbar{
@@ -36,14 +55,6 @@ struct ShoppingListView: View {
                     }
                     .pickerStyle(.menu)
                     .accentColor(.black)
-                    .onAppear{
-                        do {
-                            try shoppingList.updateShoppingList(duration: selectedDuration, into: modelContext)
-                            logger.info("Updating Shopping List Succeeded")
-                        } catch {
-                            logger.info("Updating Shopping List Failed")
-                        }
-                    }
                     .onChange(of: selectedDuration){
                         do {
                             try shoppingList.updateShoppingList(duration: selectedDuration, into: modelContext)
