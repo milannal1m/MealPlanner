@@ -9,16 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct CalenderView: View {
-    @State var currentMonth: Int = 0
+    @State var currentWeek: Int = 0
     @State var currentDate: Date = Date()
     @Query var recipes: [Recipe]
     @Query var meals: [Meal]
     @Environment(\.modelContext) private var modelContext
-    @State var showRecipePicker: Bool = false
     @State var mealsOnDate: [Meal] = []
-    @State var currentRecipe: Recipe? = nil
-    @State private var showRecipeView = false
-    var shoppingList = ShoppingList.shoppingList
+    @Environment(\.colorScheme) var colorScheme
+    @State private var showRecipePickerView = false
     
     let weekDays: [String] = {
         let formatter = DateFormatter()
@@ -29,57 +27,52 @@ struct CalenderView: View {
     var body: some View {
         VStack{
             
-            HStack(spacing: 15) {
-                VStack {
-                    Text(getYearMonthDate()[1])
-                        .font(.caption)
-                        .fontWeight(.bold)
-                    
+            HStack(spacing: 0) {
+                HStack {
                     Text(getYearMonthDate()[0])
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.system(size:30, weight: .heavy, design: .serif))
+                    
+                    Text(getYearMonthDate()[1])
+                        .font(.system(size:30, weight: .heavy, design: .serif))
                 }
                 
                 Spacer()
                 
-                Button {
-                    showRecipePicker = true
-                } label: {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                }
                 
                 Button {
-                    withAnimation{currentMonth -= 1}
+                    withAnimation{currentWeek -= 1}
                 } label: {
                     Image(systemName: "chevron.left")
-                        .font(.title2)
+                        .font(.system(size:25, weight: .heavy, design: .serif))
+                        .foregroundColor(.primary)
+                    
                 }
+                .padding(.horizontal,30)
                 Button {
-                    withAnimation{currentMonth += 1}
+                    withAnimation{currentWeek += 1}
                 } label: {
                     Image(systemName: "chevron.right")
-                        .font(.title2)
+                        .font(.system(size:25, weight: .heavy, design: .serif))
+                        .foregroundColor(.primary)
                 }
             }
             .padding(.horizontal)
-            .sheet(isPresented: $showRecipePicker){
-                RecipePickerView(pickedDate: currentDate)
-            }
-            .onChange(of: showRecipePicker){
-                currentRecipe = meals.last?.recipe ?? nil
+            .padding(.top,10)
+            .onAppear{
                 mealsOnDate = meals.filter{ meal in
                     sameDay(date1: meal.scheduledDate, date2: currentDate)
                 }
-                do {
-                    try shoppingList.updateShoppingList(duration: shoppingList.duration, into: modelContext)
-                } catch {
+            }
+            .onChange(of: showRecipePickerView){
+                mealsOnDate = meals.filter{ meal in
+                    sameDay(date1: meal.scheduledDate, date2: currentDate)
                 }
             }
             
             HStack(spacing: 10) {
                 ForEach(weekDays, id: \.self){day in
-                        Text(day)
+                    Text(day)
+                        .font(.system(size:17, weight: .regular, design: .serif))
                         .padding(.vertical)
                         .frame(maxWidth: .infinity)
                 }
@@ -88,14 +81,18 @@ struct CalenderView: View {
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(getMonthDate()){value in
+                ForEach(getCurrentWeek()){value in
                     CView(value: value)
                         .background(
-                        Capsule()
-                            .fill(.blue)
-                            .padding(.horizontal, 8)
-                            .opacity(sameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-                    )
+                            Capsule()
+                                .fill(
+                                    sameDay(date1: value.date, date2: currentDate)
+                                    ? (colorScheme == .dark ? .white : .black)
+                                    : (colorScheme == .dark ? .black : .white)
+                                )
+                            
+                                .padding(.horizontal, 8)
+                        )
                         .onTapGesture {
                             currentDate = value.date
                             mealsOnDate = meals.filter{ meal in
@@ -106,73 +103,20 @@ struct CalenderView: View {
             }
             
             VStack(spacing: 15){
-                Text("Meals")
-                    .font(.headline.bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                if meals.first(where: { meal in
-                    return sameDay(date1: meal.scheduledDate, date2: currentDate)
-                }) != nil{
-                    List{
-                        ForEach(mealsOnDate, id:\.self) { meal in
-                            HStack{
-                                if let imageData = meal.recipe.imageData,
-                                   let uiImage = UIImage(data: imageData){
-                                    Image(uiImage: uiImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(maxWidth: 30,maxHeight: 30)
-                                    
-                                }else{
-                                    Image(systemName: "fork.knife")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(maxWidth: 30,maxHeight: 30)
-                                }
-                                
-                                Text("\(meal.recipe.name)")
-                                    .bold()
-                                
-                                Spacer()
-                            }
-                            .listRowBackground(Color.gray.opacity(0.1))
-                            .onTapGesture {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    currentRecipe = meal.recipe
-                                }
-                                showRecipeView = true
-                            }
-                        }
-                        .onDelete(perform: { indexSet in
-                            for index in indexSet {
-                                    let meal = mealsOnDate[index]
-                                    modelContext.delete(meal)
-                                }
-                        })
-                    }
-                    .scrollContentBackground(.hidden)
-                    .sheet(isPresented: $showRecipeView){
-                        RecipeView(recipe: currentRecipe ?? Recipe(name: "Something went wrong"))
-                            .id(currentRecipe)
-                    }
-                    Spacer()
-                }
-                else {
-                    
-                    Text("No meal found")
-                    Spacer()
-                }
+                MealsListView(meals: $mealsOnDate, showRecipePickerView: $showRecipePickerView, pickedDate: $currentDate)
+                Spacer()
+
             }
             .padding()
         }
-        .onChange(of: currentMonth) {
+        .onChange(of: currentWeek) {
             oldValue, newValue in
             
-            currentDate  = getCurMonth()
+            currentDate  = getPickedWeek()
         }
-        
     }
-
+    
     
     @ViewBuilder
     func CView(value: DateCalendar.DateValue) -> some View {
@@ -184,26 +128,29 @@ struct CalenderView: View {
                 }){
                     
                     Text("\(value.day)")
-                        .font(.headline)
-                        .foregroundStyle(sameDay(date1: meal.scheduledDate, date2: currentDate) ? .white : .primary)
+                        .font(.system(size:20, weight: .regular, design: .serif))
+                        .foregroundStyle(sameDay(date1: meal.scheduledDate, date2: currentDate) ? (colorScheme == .dark ? .black : .white)
+                                         : (colorScheme == .dark ?  .white : .black))
                         .frame(maxWidth: .infinity)
                     
                     Spacer()
                     
                     Circle()
-                        .fill(sameDay(date1: meal.scheduledDate, date2: currentDate) ? .white : .blue)
-                        .frame(width: 8, height: 8)
+                        .fill(sameDay(date1: meal.scheduledDate, date2: currentDate) ? (colorScheme == .dark ? .black : .white)
+                              : (colorScheme == .dark ?  .white : .black))
+                        .frame(width: 6, height: 6)
                 }
                 else {
                     Text("\(value.day)")
-                        .font(.headline)
-                        .foregroundStyle(sameDay(date1: value.date, date2: currentDate) ? .white : .primary)
+                        .font(.system(size:20, weight: .regular, design: .serif))
+                        .foregroundStyle(sameDay(date1: value.date, date2: currentDate) ? (colorScheme == .dark ? .black : .white)
+                                         : (colorScheme == .dark ?  .white : .black))
                         .frame(maxWidth: .infinity)
                 }
             }
         }
         .padding(.vertical, 9)
-        .frame(height: 60, alignment: .top)
+        .frame(height: 50, alignment: .top)
     }
     
     func sameDay(date1: Date, date2: Date) -> Bool {
@@ -212,16 +159,6 @@ struct CalenderView: View {
         return calendar.isDate(date1, inSameDayAs: date2)
     }
     
-    func getCurMonth() -> Date {
-        
-        let calendar = Calendar.current
-        
-        guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else {
-            return Date()
-        }
-        
-        return currentMonth
-    }
     
     func getYearMonthDate() -> [String] {
         let formatter = DateFormatter()
@@ -232,27 +169,51 @@ struct CalenderView: View {
         return date.components(separatedBy: " ")
     }
     
-    func getMonthDate()->[DateCalendar.DateValue]{
+    
+    func getPickedWeek() -> Date {
+        
         let calendar = Calendar.current
         
-        let currentMonth = getCurMonth()
-                
-        var days = currentMonth.getDates().compactMap { date -> DateCalendar.DateValue in
-            
-            let day = calendar.component(.day, from: date)
-            
-            return DateCalendar.DateValue(day: day,date: date)
-            
+        guard let currentWeek = calendar.date(byAdding: .weekOfYear, value: self.currentWeek, to: Date()) else {
+            return Date()
         }
         
-        let firstWeekday = calendar.component(.weekday, from: days.first?.date ?? Date())
-        
-        for _ in 0..<firstWeekday - 1 {
-            days.insert(DateCalendar.DateValue(day: -1, date: Date()), at: 0)
-        }
-        
-        return days
+        return currentWeek
     }
+    
+    func getCurrentWeek() -> [DateCalendar.DateValue] {
+        let calendar = Calendar.current
+        
+        let date = getPickedWeek()
+        
+        let weekday = calendar.component(.weekday, from: date)
+        let daysToSubtract = (weekday == 1) ? 0 : (weekday)
+        
+        let startOfWeek = calendar.date(byAdding: .day, value: -daysToSubtract, to: date) ?? date
+        
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) ?? date
+        
+        var weekDays: [DateCalendar.DateValue] = []
+        var currentDay = startOfWeek
+        
+        while currentDay <= endOfWeek {
+            let day = calendar.component(.day, from: currentDay)
+            weekDays.append(DateCalendar.DateValue(day: day, date: currentDay))
+            currentDay = calendar.date(byAdding: .day, value: 1, to: currentDay) ?? currentDay
+        }
+        
+        return weekDays
+    }
+    
+    func getCurrentWeekNumber(for date: Date) -> Int? {
+        let calendar = Calendar.current
+        let weekOfYear = calendar.component(.weekOfYear, from: date)
+        return weekOfYear
+    }
+
+
+
+
 }
 
 extension Date{
@@ -263,7 +224,7 @@ extension Date{
         
         let range = calendar.range(of: .day, in: .month, for: startDate)!
         
-        return range.compactMap { day -> Date in 
+        return range.compactMap { day -> Date in
             
             return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
         }

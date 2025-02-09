@@ -14,6 +14,7 @@ struct RecipePickerView: View {
     @Query var recipes: [Recipe]
     @State var searchText = ""
     @State var pickedDate: Date
+    @State var time: Meal.MealTimes
     
     var searchedRecipes: [Recipe] {
         if searchText.isEmpty {
@@ -44,7 +45,7 @@ struct RecipePickerView: View {
                             
                             VStack {
                                 Text("\(recipe.name)")
-                                    .bold()
+                                    .font(.system(size:15, weight: .heavy, design: .serif))
                                     .frame(maxWidth: .infinity, alignment: .center)
                                     .padding(5)
                                 Spacer()
@@ -55,12 +56,13 @@ struct RecipePickerView: View {
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            recipe.addMeals(date: pickedDate, into: modelContext)
+                            recipe.addMeals(date: pickedDate, time:time, into: modelContext)
                             dismiss()
                         }
                     }
                 }
             .searchable(text: $searchText)
+                .font(.system(size:15, weight: .heavy, design: .serif))
         }
     }
 }
@@ -77,7 +79,7 @@ struct RecipePickerView: View {
     container.mainContext.insert(recipe2)
     container.mainContext.insert(recipe3)
     
-    return RecipePickerView(pickedDate: Date())
+    return RecipePickerView(pickedDate: Date(), time: Meal.MealTimes.breakfast)
         .modelContainer(container)
 }
 

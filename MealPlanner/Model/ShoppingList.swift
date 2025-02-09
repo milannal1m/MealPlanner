@@ -75,6 +75,10 @@ class ShoppingList: Identifiable, ObservableObject {
         self.updateIngredientsToBuy()
     }
     
+    func sortShoppingList(){
+        self.shoppingListEntries.sort { !$0.isBought && $1.isBought }
+    }
+    
     private func changeDuration(duration:ValidDuration){
         self.duration = duration
     }
@@ -155,5 +159,6 @@ class ShoppingList: Identifiable, ObservableObject {
         
         return shoppingListEntries
     }
+
     
 }

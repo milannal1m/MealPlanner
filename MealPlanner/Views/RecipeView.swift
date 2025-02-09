@@ -33,11 +33,14 @@ struct RecipeView: View {
                             .scaledToFit()
                             .frame(maxWidth: 200,maxHeight: 200)
                             .padding(.top, 30)
+                        
+                        PhotosPicker("Select photo of meal", selection: $selectedPhoto, matching: .images)
+                            .padding(20)
+                            .foregroundColor(.primary)
+                            .font(.system(size:15, weight: .heavy, design: .serif))
                     }
                     
-                    PhotosPicker("Select photo of meal", selection: $selectedPhoto, matching: .images)
-                        .padding(.bottom, 20)
-                    
+
                     IngredientList(recipe: recipe)
                 }
                 .task(id: selectedPhoto){
@@ -50,8 +53,7 @@ struct RecipeView: View {
                 ToolbarItem(placement: .topBarLeading){
                     Text(recipe.name)
                         .bold()
-                        .font(.system(size: 26))
-                }
+                        .font(.system(size:30, weight: .heavy, design: .serif))           }
             }
         }
     }

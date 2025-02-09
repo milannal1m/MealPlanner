@@ -32,7 +32,7 @@ struct IngredientList: View {
                 VStack(spacing: -10) {
                     HStack(alignment: .center, spacing: 10) {
                         Text("Ingredients")
-                            .font(.title2.bold())
+                            .font(.system(size:25, weight: .heavy, design: .serif))
                         
                         Spacer()
                         
@@ -40,7 +40,8 @@ struct IngredientList: View {
                             showAdd = true
                         } label: {
                             Image(systemName: "plus")
-                                .font(.title2)
+                                .font(.system(size:15, weight: .heavy, design: .serif))
+                                .foregroundStyle(.primary)
                         }
                     }
                     .padding(.horizontal)
@@ -49,11 +50,12 @@ struct IngredientList: View {
                         ForEach(tagsArray, id: \.0) { index, ingredient in
                             HStack {
                                 Text(ingredient.name)
-                                    .font(.headline)
+                                    .font(.system(size:15, weight: .heavy, design: .serif))
                                 
                                 
                                 Spacer()
                                 Text("\(String(format: "%g", ingredient.amount)) \(ingredient.unit)")
+                                    .font(.system(size:15, weight: .regular, design: .serif))
                                 
                                     .font(.subheadline)
                             }

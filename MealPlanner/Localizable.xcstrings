@@ -7,6 +7,9 @@
     "%@" : {
 
     },
+    "%@   " : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -40,6 +43,17 @@
         }
       }
     },
+    "Breakfast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frühstück"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "de" : {
@@ -68,6 +82,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tage"
+          }
+        }
+      }
+    },
+    "Dinner" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abendessen"
           }
         }
       }
@@ -145,7 +170,19 @@
         }
       }
     },
+    "Lunch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mittagessen"
+          }
+        }
+      }
+    },
     "Meals" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -159,6 +196,7 @@
 
     },
     "No meal found" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

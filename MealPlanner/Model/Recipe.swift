@@ -33,8 +33,8 @@ class Recipe: Identifiable {
         context.insert(ingredient)
     }
     
-    func addMeals(date:Date, into context: ModelContext){
-        let meal = Meal(recipe: self, scheduledDate: date)
+    func addMeals(date:Date, time:Meal.MealTimes, into context: ModelContext){
+        let meal = Meal(recipe: self, scheduledDate: date, time:time)
         context.insert(meal)
     }
 }

@@ -17,6 +17,18 @@ struct MainView: View {
             } catch {
                 fatalError("Could not initialize ModelContainer")
             }
+            
+            let appearance = UITabBarAppearance()
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+                .font: UIFont(name: "Times New Roman", size: 12)!
+            ]
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+                .font: UIFont(name: "Times New Roman", size: 12)!
+            ]
+
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+
         }
     
     var body: some View {
@@ -25,6 +37,7 @@ struct MainView: View {
                 .tabItem{
                     Image(systemName: "fork.knife")
                     Text("Rezepte")
+                        
                 }
             CalenderView()
                 .tabItem {
@@ -40,18 +53,26 @@ struct MainView: View {
                 .padding()
         }
         .modelContainer(modelContainer)
+        .tint(.primary)
+        .font(.system(size:30, weight: .heavy, design: .serif))
         
     }
 }
 
 #Preview("Deutsch") {
-    MainView()
-        .modelContainer(previewContainer)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Ingredient.self, Recipe.self, Meal.self, configurations: config)
+    
+    return MainView()
+        .modelContainer(container)
         .environment(\.locale, Locale(identifier: "de"))
 }
 
 #Preview("English") {
-    MainView()
-        .modelContainer(previewContainer)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Ingredient.self, Recipe.self, Meal.self, configurations: config)
+    
+    return MainView()
+        .modelContainer(container)
         .environment(\.locale, Locale(identifier: "en"))
 }

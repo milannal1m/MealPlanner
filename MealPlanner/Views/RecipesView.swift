@@ -89,19 +89,20 @@ struct RecipesView: View {
             }
             .scrollContentBackground(.hidden)
             .searchable(text: $searchText)
+                .font(.system(size:15, weight: .regular, design: .serif))
             .toolbar{
                 ToolbarItem(placement: ToolbarItemPlacement.topBarTrailing) {
                     Button{
                         showCreateRecipe = true
                     } label: {
                         Image(systemName: "plus")
+                            .font(.system(size:15, weight: .heavy, design: .serif))
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                 }
                 ToolbarItem(placement: ToolbarItemPlacement.topBarLeading) {
                     Text("Recipes")
-                        .bold()
-                        .font(.system(size:30))
+                        .font(.system(size:30, weight: .heavy, design: .serif))
                 }
             }
             .alert("Enter new Recipe", isPresented: $showCreateRecipe){
@@ -121,6 +122,7 @@ struct RecipesView: View {
                     .id(currentRecipe)
             }
         }
+        .padding(.top,10)
     }
 }
 
