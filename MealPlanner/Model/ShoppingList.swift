@@ -101,12 +101,12 @@ class ShoppingList: Identifiable, ObservableObject {
     private func IsMealInDuration(meal:Meal) -> Bool{
         let timeDiffToMeal = self.retrieveTimeDiffToMeal(meal: meal)
         
-        return self.duration.timeInterval >= timeDiffToMeal
+        return self.duration.timeInterval >= timeDiffToMeal && timeDiffToMeal >= 0
     }
     
     
     private func retrieveTimeDiffToMeal(meal: Meal) -> TimeInterval{
-        let currentDate = Date()
+        let currentDate = Calendar.current.startOfDay(for: Date())
         let timeDiff = meal.scheduledDate.timeIntervalSince(currentDate)
         return timeDiff
     }
