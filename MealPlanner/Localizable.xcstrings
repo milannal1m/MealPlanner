@@ -181,41 +181,11 @@
         }
       }
     },
-    "Meals" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mahlzeiten"
-          }
-        }
-      }
-    },
     "Name" : {
 
     },
-    "No meal found" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine Mahlzeiten gefunden"
-          }
-        }
-      }
-    },
     "No Meals planned" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine Mahlzeiten für die "
-          }
-        }
-      }
+
     },
     "Ok" : {
 

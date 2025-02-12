@@ -88,7 +88,10 @@ struct CalenderView: View {
                                 .fill(
                                     sameDay(date1: value.date, date2: currentDate)
                                     ? (colorScheme == .dark ? .white : .black)
-                                    : (colorScheme == .dark ? .black : .white)
+                                    :(sameDay(date1: value.date, date2: Date())
+                                      ? (colorScheme == .dark ? .gray.opacity(0.5) : .gray.opacity(0.3))
+                                      : (colorScheme == .dark ? .black : .white))
+                                    
                                 )
                             
                                 .padding(.horizontal, 8)
@@ -183,14 +186,12 @@ struct CalenderView: View {
     
     func getCurrentWeek() -> [DateCalendar.DateValue] {
         let calendar = Calendar.current
-        
         let date = getPickedWeek()
         
         let weekday = calendar.component(.weekday, from: date)
-        let daysToSubtract = (weekday == 1) ? 0 : (weekday)
+        let daysToSubtract = weekday - 1  // Sonntag als Startpunkt
         
         let startOfWeek = calendar.date(byAdding: .day, value: -daysToSubtract, to: date) ?? date
-        
         let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek) ?? date
         
         var weekDays: [DateCalendar.DateValue] = []
@@ -204,7 +205,7 @@ struct CalenderView: View {
         
         return weekDays
     }
-    
+
     func getCurrentWeekNumber(for date: Date) -> Int? {
         let calendar = Calendar.current
         let weekOfYear = calendar.component(.weekOfYear, from: date)
