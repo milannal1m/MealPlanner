@@ -17,6 +17,7 @@ struct CalenderView: View {
     @State var mealsOnDate: [Meal] = []
     @Environment(\.colorScheme) var colorScheme
     @State private var showRecipePickerView = false
+    @State private var offset: CGFloat = 0
     
     let weekDays: [String] = {
         let formatter = DateFormatter()
@@ -104,12 +105,36 @@ struct CalenderView: View {
                         }
                 }
             }
+            .offset(x: offset)
+            .gesture(
+                DragGesture(minimumDistance: 50, coordinateSpace: .local)
+                    .onEnded { gesture in
+                        withAnimation(.easeIn(duration: 0.1)) {
+                            if gesture.translation.width < 0 {
+                                offset = -100
+                            } else if gesture.translation.width > 0 {
+                                offset = 100
+                            }
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            withAnimation(.easeInOut(duration: 0.1)) {
+                                if offset > 0 {
+                                    currentWeek -= 1
+                                }else{
+                                    currentWeek += 1
+                                }
+                                offset = 0
+                            }
+                        }
+                    }
+            )
             
             VStack(spacing: 15){
                 
                 MealsListView(meals: $mealsOnDate, showRecipePickerView: $showRecipePickerView, pickedDate: $currentDate)
                 Spacer()
-
+                
             }
             .padding()
         }
@@ -205,16 +230,16 @@ struct CalenderView: View {
         
         return weekDays
     }
-
+    
     func getCurrentWeekNumber(for date: Date) -> Int? {
         let calendar = Calendar.current
         let weekOfYear = calendar.component(.weekOfYear, from: date)
         return weekOfYear
     }
-
-
-
-
+    
+    
+    
+    
 }
 
 extension Date{
